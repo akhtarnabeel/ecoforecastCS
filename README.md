@@ -1,7 +1,7 @@
 # Ecoforecast
 
 
-## Tuesday Meeting Writeup:
+## Tuesday (Jul 31, 2018) Meeting Writeup:
 
 1. Submitted code shound output everything in out.json file. 
 
