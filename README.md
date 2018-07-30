@@ -1,7 +1,7 @@
-## Ecoforecast
+# Ecoforecast
 
 
-# Tuesday Meeting Writeup:
+## Tuesday Meeting Writeup:
 
 1. Submitted code shound output everything in out.json file. 
 
@@ -12,7 +12,7 @@
 
 
 
-# To Do:
+## To Do:
 
 1. Add database support. 
 
