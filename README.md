@@ -1,4 +1,4 @@
-# Ecoforecast
+## Ecoforecast
 
 
 # Tuesday Meeting Writeup:
@@ -9,7 +9,6 @@
 
 3. Currently there is support for ______ libraries only. We are working on adding the functionality to install libraries as the user submits the code. 
 
-4. 
 
 
 
@@ -17,6 +16,11 @@
 
 1. Add database support. 
 
-2. Create multi-threading support i.e. Output files conflict from OpenWhisk
+2. Functionality of running code periodically. 
 
-3. 
+3. Design the backend for the web-server. 
+
+4. Dynamically install libraries. 
+
+5. Create multi-threading support i.e. Output files conflict from OpenWhisk
+
