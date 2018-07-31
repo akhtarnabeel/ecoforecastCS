@@ -1,0 +1,3 @@
+actions
+/guest/temp                                                            private blackbox
+/guest/demo                                                            private blackbox
