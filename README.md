@@ -23,3 +23,6 @@
 
 5. Create multi-threading support i.e. Output files conflict from OpenWhisk
 
+## Things needed
+
+1. Figure for the architecture, especially "conceptual figures"
