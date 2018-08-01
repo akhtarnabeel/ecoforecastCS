@@ -1,7 +1,7 @@
 # Ecoforecast
 
 
-## Tuesday (Jul 31, 2018) Meeting Writeup:
+## How to Run Code on Web
 
 1. Submitted code shound output everything in out.json file. 
 
