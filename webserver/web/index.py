@@ -29,14 +29,18 @@ def do_authenticate(form):
 def create_job(form, cookie):
 
 	user_dir = cookie["remember_me"].value
+
 	r_code = form["r_code"].value
 	transaction_dir = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
 	os.system("mkdir users/" +user_dir+"/"+transaction_dir)
+
 	git_libs = form["job_git_libs"].value
 	cran_libs = form["job_cran_libs"].value
 	fileitem = form['file']
 	repeat_interval = -1
+
 	end_date = form["end_date"].value
+	model_name = form["model_name"].value
 
 	if fileitem.filename != "":
 		#show_error_page(form)
@@ -45,7 +49,7 @@ def create_job(form, cookie):
 		f.write(fileitem.file.read())
 		f.close()
 
-	if form["repeat_it"].value == "Yes":
+	if "repeat_it" in form and form["repeat_it"].value == "Yes":
 		try:
 			repeat_interval = int(form["run_interval"].value)*60
 		except:
@@ -53,6 +57,7 @@ def create_job(form, cookie):
 
 
 	print_header()
+	print "Model Name: " + model_name
 	print "<br>Transaction Folder: "
 	print "<br>users/"+user_dir+"/"+ transaction_dir
 	print "<br>Git Libs :" + git_libs 

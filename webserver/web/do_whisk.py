@@ -29,7 +29,7 @@ def run_code(action_name, trigger_name=None):
     
     
 
-
+#Done
 def create_wrapper(user_id, action_name):
     os.system('cp /var/www/html/web/wrapper.py exec')
     prefix = """#!/usr/bin/python
@@ -38,27 +38,30 @@ action_name = '""" + str(action_name)+ """'"""
     prepend('exec', prefix)
     
 
-def create_code(code, user_id, code_dir):
+#Done
+def create_code(code):
     f = open("code.R","w")
     f.write(code)
+    f = open("code.R", "rw")
     with zipfile.ZipFile(zipname, 'w') as z:
         z.write('code.R')
         z.write('exec')
     
 
 
-
+#TODO
 def configure_intervals(action_name, intervals):
     cmd = "wsk -i trigger create interval-" + str(action_name) + " --feed /whisk.system/alarms/interval --param minutes " + str(intervals)
     trigger_name = "interval-" + str(action_name)
-    process = subprocess.Popen(cmd, shell=False, stdout=None, stderr=None)
-    process.wait()
+    os.system(cmd)
     return trigger_name 
 
 
+#TODO
 def configure_libraries(libraries):
     pass
 
+#Works
 def prepend(file1, string):
     with open(file1, 'r') as f:
         with open('temp.txt', 'w') as f2:
@@ -66,6 +69,7 @@ def prepend(file1, string):
             f2.write(f.read())
     os.rename('temp.txt', file1)
     os.system('chmod +x ' + str(file1))
+
 
 def init(user_id, code, code_dir, libraries=None, intervals=-1):
     #change directory/create if it does not exist
@@ -77,7 +81,7 @@ def init(user_id, code, code_dir, libraries=None, intervals=-1):
     action_name= str(user_id) + str(code_name)
     trigger_name=None
     create_wrapper(user_id, action_name)
-    create_code(code, user_id, code_dir)
+    create_code(code)
     if not intervals == -1:
         trigger_name = configure_intervals(action_name, intervals)
     if not libraries==None:
@@ -85,13 +89,10 @@ def init(user_id, code, code_dir, libraries=None, intervals=-1):
     run_code(action_name, trigger_name)
 
 
-R_code = """
-setwd("/action")
-retJSON <- '{
+R_code = """retJSON <- '{
   \"msg\": 3
 }'
-write(retJSON, file="out.json")
-"""
+write(retJSON, file="out.json")"""
 init("1", R_code, "alex/123")
 
 
