@@ -18,7 +18,6 @@ zipname = "supportingfiles.zip"
 
 def run_code(action_name, trigger_name=None):
     cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(zipname) + ' -m 8000 --docker alexfarra/ecoforecastdocker:master'
-    print(cmd)
     os.system(cmd)
     if not trigger_name==None:
         rule_name = 'rule-' + str(action_name)
@@ -30,11 +29,14 @@ def run_code(action_name, trigger_name=None):
     
 
 #Done
-def create_wrapper(user_id, action_name):
+def create_wrapper(user_id, transaction_id, model_name, intervals, stop_date):
     os.system('cp /var/www/html/web/wrapper.py exec')
     prefix = """#!/usr/bin/python
 user_id = '""" + str(user_id) + """'
-action_name = '""" + str(action_name)+ """'""" 
+transaction_id = '""" + str(transaction_id) + """'
+model_name = '""" + str(model_name) + """'
+interval = '""" + str(intervals) + """'
+stop_date = '""" + str(stop_date)+ """'""" 
     prepend('exec', prefix)
     
 
@@ -50,8 +52,8 @@ def create_code(code):
 
 
 #TODO
-def configure_intervals(action_name, intervals):
-    cmd = "wsk -i trigger create interval-" + str(action_name) + " --feed /whisk.system/alarms/interval --param minutes " + str(intervals)
+def configure_intervals(action_name, intervals, end_date):
+    cmd = "wsk -i trigger create interval-" + str(action_name) + " --feed /whisk.system/alarms/interval --param minutes " + str(intervals) + " --param stopDate " + '"' + str(end_date) +  '"'
     trigger_name = "interval-" + str(action_name)
     os.system(cmd)
     return trigger_name 
@@ -71,29 +73,30 @@ def prepend(file1, string):
     os.system('chmod +x ' + str(file1))
 
 
-def init(user_id, code, code_dir, libraries=None, intervals=-1):
-    #change directory/create if it does not exist
+def openwhisk_exec(model_name, user_id, transaction_id, code, code_dir, cran_libraries=None, git_libraries=None, intervals=-1, stop_date=None):
     if not os.path.isdir(code_dir):
         os.mkdir(code_dir)
     os.chdir(code_dir)
     code_name = code_dir.replace("/", "")
-    print(code_name)
     action_name= str(user_id) + str(code_name)
     trigger_name=None
-    create_wrapper(user_id, action_name)
+    create_wrapper(user_id, transaction_id, model_name, intervals, stop_date)
+    #print("create wrapper")
     create_code(code)
-    if not intervals == -1:
-        trigger_name = configure_intervals(action_name, intervals)
-    if not libraries==None:
-        configure_libraries(libraries)
+    #if not intervals == -1:
+        #trigger_name = configure_intervals(action_name, intervals, end_date)
+    #if not cran_libraries==None:
+        #configure_libraries(libraries)
     run_code(action_name, trigger_name)
 
 
-R_code = """retJSON <- '{
-  \"msg\": 3
-}'
-write(retJSON, file="out.json")"""
-init("1", R_code, "alex/123")
+
+
+#R_code = """retJSON <- '{
+#  \"msg\": 3
+#}'
+#write(retJSON, file="out.json")"""
+#openwhisk_exec("test", "alex", "12345", R_code, "alex/1234")
 
 
 

@@ -22,28 +22,34 @@ def show_test_page():
 
 def show_login_page():
 	print_header()
-	print """ 
+	print """<center>
     <h2>Welcome</h2>
     You must identify yourself to use this website. Please enter your:
-    <p>
+
     <form method="post">
     <table>
       <tr>
         <td>
-          <h3>Email Address:</h3>
+          Email Address:
         </td>
         <td>
           <input type="text" name="email" size="20"><br>
         </td>
       </tr>
+
+      <tr>
         <td>
-        <input type="submit" name="login_button" value="Authenticate">
+          Password:
         </td>
         <td>
+          <input type="password" name="pass" size="20"><br>
         </td>
       </tr>
+
     </table>
-    </form>
+        <input type="submit" id="button3" name="login_button" value="login">
+
+    </form> </center>
     """
 
 
@@ -137,7 +143,35 @@ def show_submit_code_page(cran_libs, git_libs):
 	</form></center> """.format(cran_libs, git_libs)
 
 
+def show_all_record_page(records, mes):
+	print_header()
+	print "<h1> All Records </h1>"
 
+	if mes == "redirect":
+		print "<p>if you just submitted a job, refresh this page in a while and you will see the results here!</p>"
+
+	print """<center>
+        	<table>
+        	<tr> <td>User ID</td> <td>Experiment ID</td> <td>Experiment Name</td> <td>Time</td> <td>Preiodic</td> <td>Results</td></tr>
+        	"""
+
+	for rec in records:
+		print """<tr>
+			<td>{0}</td>
+			<td>{1}</td>
+			<td>{2}</td>
+			<td>{3}</td>""".format(rec['user_id'], rec['transaction_id'], rec['model_name'], rec['time'])
+
+		if rec["interval"] != "-1":
+			print "<td>Yes</td>"
+		else:
+                	print "<td>No</td>"
+
+                print """<td>{0}</td>
+                	</tr>""".format(rec['result'])
+
+	print """ </center>
+		</table>"""
 
 def show_error_page(message):
 	print_header()

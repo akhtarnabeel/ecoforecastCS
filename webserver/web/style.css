@@ -2,8 +2,14 @@
     width: 300px;
     height: 40px;
 }
+
 #button2{
     width: 300px;
+    height: 40px;
+}
+
+#button3{
+    width: 200px;
     height: 40px;
 }
 #container{ 
