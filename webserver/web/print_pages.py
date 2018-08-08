@@ -6,9 +6,16 @@ def print_header():
 	print 
 	print '''<head>
   		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>'''
+	</head> <body>'''
 
-
+def add_main_menue():
+	print """  <div class="topnav">
+                <a class="active" href="?show_home=true">Home</a>
+                <a href="?new_exp=clicked">Start New Exp</a>
+                <a href="?show_old=clicked">Show Logs</a>
+                <a href="#">Instructions!</a>
+                </div>
+	"""
 
 def show_add_library_page():
 	print_header()
@@ -57,17 +64,20 @@ def show_login_page():
 
 def show_home_page():
 	print_header()
-	print ''' <div id="container">
+	add_main_menue()
+	print ''' 
+		<div id="container">
 		<form method="post">
 			<input type="submit" id="button1" name="show_old" value="Show Old Results">
 			<input type="submit" id="button2" name= "new_exp" value=" Run New Experiment">
 		</form>
-              </div>'''
+              	</div>'''
 
 
 
 def show_lib_page():
 	print_header()
+	add_main_menue()
 	print ''' 
 
 	<form  method="post">
@@ -107,6 +117,7 @@ def show_lib_page():
 
 def show_submit_code_page(cran_libs, git_libs):
 	print_header()
+	add_main_menue()
 	print """ 
          <center><form enctype="multipart/form-data"  method="post">
 
@@ -118,7 +129,7 @@ def show_submit_code_page(cran_libs, git_libs):
 	<col width= "300px">
 	<tr>
 	<td>
-	<h1> Sumbit Your Code here!</h1>
+	<h1> Submit Your Code here!</h1>
 	</td>
 	</tr>
 	<tr>
@@ -145,6 +156,7 @@ def show_submit_code_page(cran_libs, git_libs):
 
 def show_all_record_page(records, mes):
 	print_header()
+	add_main_menue()
 	print "<h1> All Records </h1>"
 
 	if mes == "redirect":
@@ -167,13 +179,26 @@ def show_all_record_page(records, mes):
 		else:
                 	print "<td>No</td>"
 
-                print """<td>{0}</td>
-                	</tr>""".format(rec['result'])
+                print """<td><a href="?user_id={0}&&transaction_id={1}&&show_one_result=True">View Results</a></td>
+                	</tr>""".format(rec['user_id'], rec['transaction_id'])
 
 	print """ </center>
 		</table>"""
+
+
+
+
+
 
 def show_error_page(message):
 	print_header()
 	print message
 
+
+
+
+def show_one_result(user_id):
+	print_header()
+	add_main_menue()
+	print "The result! <br>"
+	print '''<a href="users/{0}/view_results/view.json" download> Download </a> <br>'''.format(user_id)

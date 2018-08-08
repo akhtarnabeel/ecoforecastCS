@@ -31,4 +31,11 @@ def mongo_get_results(user_id):
 	return results.find({"user_id":user_id}).sort("time", -1)
 
 
+def mongo_get_one_result(user_id, trans_id):
+	r = results.find_one({"user_id":user_id, "transaction_id": trans_id})
+	return r["result"]
+
+#rec =  results.find()
+#for r in rec:
+#	print r
 #print mongo_do_authenticate("aliraza0337@gmail.com")

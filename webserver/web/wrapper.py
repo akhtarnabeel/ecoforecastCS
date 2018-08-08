@@ -11,7 +11,7 @@ from pymongo import MongoClient
 os.chdir("/action")
 process = subprocess.Popen("/usr/bin/Rscript code.R", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 process.wait()
-client = MongoClient('192.1.242.152', 27017)
+client = MongoClient('192.1.242.151', 27017)
 db = client.EcoForecast
 results = db.results
 if os.path.isfile("/action/out.json"):

@@ -48,21 +48,19 @@ def create_job(form, cookie):
 		f = open("users/"+user_dir+"/"+ transaction_dir+"/supportingfiles.zip", 'wb')
 		f.write(fileitem.file.read())
 		f.close()
+	#print_header()
 
 	if "repeat_it" in form and form["repeat_it"].value == "Yes":
-		try:
-			repeat_interval = int(form["run_interval"].value)*60
-		except:
-			pass
+		repeat_interval = int(float(form["run_interval"].value)*60)
 
 	try:
-		#print_header()
+		#date format: 2018-08-16, year-mon-day
 		openwhisk_exec(model_name, user_dir, transaction_dir, r_code, "users/"+user_dir+"/"+transaction_dir, cran_libs, git_libs, repeat_interval, end_date )
 	except:
 		pass
 
 	return True
-	print_header()
+
 	print "Model Name: " + model_name
 	print "<br>Transaction Folder: "
 	print "<br>users/"+user_dir+"/"+ transaction_dir
@@ -72,13 +70,21 @@ def create_job(form, cookie):
 	print "<br>End date: " + str(end_date)
 
 
-def show_logs():
+def show_logs(user_id):
 	rec = mongo_get_results(user_id)
 	show_all_record_page(rec, "redirect")
 
+def view_one_result(user_id, transaction_id):
+	res = mongo_get_one_result(user_id, transaction_id)
+	f = open("users/"+user_id+"/view_results/view.json", "wb")
+	f.write(res)
+	f.close()
+	show_one_result(user_id)
 
 
-
+def take_to(url):
+	print_header()
+	print """ <meta http-equiv="refresh" content="0; url={0}" /> """.format(url)
 if __name__=="__main__":
 	cookie = Cookie.SimpleCookie()
 	try:
@@ -109,11 +115,13 @@ if __name__=="__main__":
 
 		elif "submit_job" in form:
 			if form["r_code"].value != "":
+				#print_header()
 				if create_job(form, cookie):
-					show_logs()
+					take_to("?show_old=clicked&user_id="+str(user_id))
 			else:
 				show_error_page("Ever consider submitting code?")
-
+		elif "show_one_result" in form and "user_id" in form and "transaction_id" in form:
+			view_one_result(form["user_id"].value, form["transaction_id"].value)
 		else:
 			show_home_page()
 
