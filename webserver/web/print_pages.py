@@ -10,7 +10,7 @@ def print_header():
 
 def add_main_menue():
 	print """  <div class="topnav">
-                <a class="active" href="?show_home=true">Home</a>
+                <a href="?show_home=true">Home</a>
                 <a href="?new_exp=clicked">Start New Exp</a>
                 <a href="?show_old=clicked">Show Logs</a>
                 <a href="#">Instructions!</a>
@@ -205,7 +205,7 @@ def show_one_result(user_id):
 	print_header()
 	add_main_menue()
 	print "The result (Download Json file)"
-	print '''<a href="users/%s/view_results/view.json" download> Download </a> <br>'''.format(user_id)
+	print '''<a href="users/%s/view_results/view.json" download>Download</a> <br>'''.format(user_id)
 
 	try:
 		all_variables = get_all_variables("users/"+user_id+"/view_results/view.json")
