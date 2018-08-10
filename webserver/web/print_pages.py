@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import json
 
 def print_header():
 	print "Content-type: text/html"
@@ -195,10 +195,106 @@ def show_error_page(message):
 	print message
 
 
+def get_all_variables(file_path):
+        with open(file_path) as f:
+                data = json.load(f)
+                return data["body"].keys()
 
 
 def show_one_result(user_id):
 	print_header()
 	add_main_menue()
-	print "The result! <br>"
-	print '''<a href="users/{0}/view_results/view.json" download> Download </a> <br>'''.format(user_id)
+	print "The result (Download Json file)"
+	print '''<a href="users/%s/view_results/view.json" download> Download </a> <br>'''.format(user_id)
+
+	try:
+		all_variables = get_all_variables("users/"+user_id+"/view_results/view.json")
+	except:
+		print "There was no body in json"
+		return
+
+	print """ 
+
+	<html>  
+		<head>
+    		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    	<script type="text/javascript">
+        function plot_this(){
+        var e = document.getElementById("x_var");
+        var x_to_plot = e.options[e.selectedIndex].text;
+        var e = document.getElementById("y_var");
+        var y_to_plot = e.options[e.selectedIndex].text;
+        var xdata = null;var ydata = null;
+        var xlab = null;
+        var ylab = null;        //var graphtitle = null"""
+        #$.getJSON('"""
+	print "$.getJSON(\'users/"+user_id+"/view_results/view.json\'"
+	print """ , function(data) {
+	xdata = data.body[x_to_plot];
+        console.log(data.body.x);
+        ydata = data.body[y_to_plot];
+        xlab = data.xlab;
+        ylab = data.ylab;
+        //graphtitle = data.graphtitle;
+        var trace1 = {
+                x: xdata,
+                y: ydata, 
+                mode: 'markers'
+        };
+        var data = [ trace1 ];
+
+        var layout = {
+        xaxis: {
+        title: xlab
+        },
+        yaxis: {
+        title: ylab
+        },
+        //title: graphtitle
+        };
+        Plotly.newPlot('myDiv', data, layout);
+        });
+
+
+      }
+
+	</script>
+  	</head>	
+	<body>
+    <table>
+   <tr>
+   <center> Plot these results! <br>
+    <form name="myform" action="javascript:plot_this()">
+    <select id="x_var">"""
+
+
+	for i in all_variables:
+        	print """ 
+         <option value="{0}">{0}</option> 
+        """.format(i)
+	print """</select> VS <select id="y_var">"""
+
+	for i in all_variables:
+        	print """ 
+         <option value="{0}">{0}</option> 
+        """.format(i)
+
+
+	print """</select> 
+      <input name="Submit"  type="submit" value="Plot"/>
+    </form>
+</center>
+</tr>
+<tr>
+ <div id="myDiv">
+        <!-- Plotly chart will be drawn inside this DIV -->
+ </div>
+</tr>
+</body>
+</html>
+
+"""
+
+
+
