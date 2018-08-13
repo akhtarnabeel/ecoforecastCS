@@ -25,7 +25,7 @@ Output json file should look like the following.
 ![alt text](screenshots/json.png)
 
 
-5.After submitting code, user will be redirected to the logs page where they can see the all the old results. On completion of each code execution the results will appear here. 
+5.After submitting code, user will be redirected to the logs page where they can see all the old results. On completion of each code execution the results will appear here. 
 
 ![alt text](screenshots/logs.png)
 
