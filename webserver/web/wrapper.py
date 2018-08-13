@@ -9,19 +9,29 @@ import random
 import time
 from pymongo import MongoClient
 os.chdir("/action")
-process = subprocess.Popen("/usr/bin/Rscript code.R", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+log = open("log.txt", 'w')
+error = open('error.txt', 'w')
+process = subprocess.Popen("/usr/bin/Rscript code.R", shell=True, stdout=log, stderr=error)
 process.wait()
 client = MongoClient('192.1.242.151', 27017)
 db = client.EcoForecast
 results = db.results
+log.close()
+error.close()
+log = open('log.txt', 'r')
+error = open('error.txt', 'r')
 if os.path.isfile("/action/out.json"):
-	with open('/action/out.json') as f:
-		data = json.load(f)
-		result = json.dumps(data)
-		print(result)
+    with open('/action/out.json') as f:
+        data = json.load(f)
+        io = {"stdout": log.read(), "stderr": error.read()}
+        result = {"data": data, "logs": io}
+        print(json.dumps(result))
 else:
-	result = {"msg": "Error, no result"}
-	print(json.dumps(result))
+    result = {"stdout": log.read(), "stderr": error.read()}
+    print(json.dumps(result))
+
+log.close()
+error.close()
 
 result_data = {
     'user_id': user_id,

@@ -9,7 +9,7 @@ import random
 from print_pages import *
 from do_mongo import *
 from do_whisk import *
-
+import json 
 
 
 def set_cookie(email, work_dir):
@@ -76,8 +76,10 @@ def show_logs(user_id):
 
 def view_one_result(user_id, transaction_id):
 	res = mongo_get_one_result(user_id, transaction_id)
+	print_header()
+	#print res
 	f = open("users/"+user_id+"/view_results/view.json", "wb")
-	f.write(res)
+	f.write(json.dumps(res))
 	f.close()
 	show_one_result(user_id)
 
@@ -121,6 +123,8 @@ if __name__=="__main__":
 			else:
 				show_error_page("Ever consider submitting code?")
 		elif "show_one_result" in form and "user_id" in form and "transaction_id" in form:
+			#print_header()
+			#print "I am here"
 			view_one_result(form["user_id"].value, form["transaction_id"].value)
 		else:
 			show_home_page()

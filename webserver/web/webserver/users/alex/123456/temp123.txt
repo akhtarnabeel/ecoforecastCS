@@ -1,0 +1,3 @@
+ok: created action alexusersalex123456
+ok: created rule rule-alexusersalex123456
+ok: invoked /_/alexusersalex123456 with id 68bfa3a7ea3046c5bfa3a7ea3036c590

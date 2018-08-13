@@ -198,14 +198,14 @@ def show_error_page(message):
 def get_all_variables(file_path):
         with open(file_path) as f:
                 data = json.load(f)
-                return data["body"].keys()
+                return data["data"]["body"].keys()
 
 
 def show_one_result(user_id):
 	print_header()
 	add_main_menue()
 	print "The result (Download Json file)"
-	print '''<a href="users/%s/view_results/view.json" download>Download</a> <br>'''.format(user_id)
+	print '''<a href="users/{0}/view_results/view.json" download>Download</a> <br>'''.format(user_id)
 
 	try:
 		all_variables = get_all_variables("users/"+user_id+"/view_results/view.json")
@@ -231,11 +231,11 @@ def show_one_result(user_id):
         #$.getJSON('"""
 	print "$.getJSON(\'users/"+user_id+"/view_results/view.json\'"
 	print """ , function(data) {
-	xdata = data.body[x_to_plot];
-        console.log(data.body.x);
-        ydata = data.body[y_to_plot];
-        xlab = data.xlab;
-        ylab = data.ylab;
+	xdata = data.data.body[x_to_plot];
+        console.log(data.data.body.x);
+        ydata = data.data.body[y_to_plot];
+        xlab = data.data.xlab;
+        ylab = data.data.ylab;
         //graphtitle = data.graphtitle;
         var trace1 = {
                 x: xdata,
