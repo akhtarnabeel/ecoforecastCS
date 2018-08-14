@@ -2,7 +2,7 @@
 
 
 ## How to Run R-code using our Web-based Platform
-1. Go to the page (http://csr.bu.edu/rina/EcoForecast) and login with username and password (for now you don't need to enter a password, just your email id as username). (Note: One can use the files in the 'demo/' folder to recreate the following results.)
+1. Go to the page (http://csr.bu.edu/rina/EcoForecast) and login with username and password (for now you don't need to enter a password, just your email id as username). (Note: One can use the files under the 'demo/' folder to recreate the following results.)
 
 2. Click on "Run New Experiment"
 
