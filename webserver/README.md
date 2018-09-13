@@ -1,6 +1,6 @@
 # Setup Webserver:
 
-'''
+```
 #install - cgi-bin 
 apt-get update
 apt-get install apache2
@@ -24,4 +24,4 @@ apt-get update
 apt-get install -y mongodb-org
 apt-get install python-pip
 pip install pymongo
-'''
+```
