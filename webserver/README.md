@@ -15,7 +15,7 @@ apt-get install apache2
 #                 allow from all
 #                 AddHandler cgi-script .py .html
 #  </Directory>
-# then execute the following commands on shell.
+# then execute the following commands in the shell.
 
 a2enmod cgi
 service apache2 restart
