@@ -1,7 +1,7 @@
 # Setup Webserver:
 ssh to the machine where you want to setup webserver and follow the following insructions.
 
-### CGI-BIN
+### apache & CGI-BIN
 ```
 #install - cgi-bin 
 apt-get update
