@@ -23,7 +23,7 @@ service apache2 restart
 ```
 
 ### MongoDB
-Following steps will install MongoDB and python-api pacakge. In case MongoDB is install on a separate machine, update do_mongo.py file accordinly [replace localhost with the ipaddress](https://github.com/akhtarnabeel/ecoforecastCS/blob/master/webserver/web/do_mongo.py#L9)
+Following steps will install MongoDB and python-api pacakge. In case MongoDB is installed on a separate machine, update do_mongo.py file accordinly [replace localhost with the ipaddress](https://github.com/akhtarnabeel/ecoforecastCS/blob/master/webserver/web/do_mongo.py#L9)
 ```apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
 apt-get update
