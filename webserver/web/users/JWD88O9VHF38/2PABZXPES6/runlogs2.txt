@@ -1,0 +1,3 @@
+ok: created action usersJWD88O9VHF382PABZXPES6
+ok: created rule rule-usersJWD88O9VHF382PABZXPES6
+ok: invoked /_/usersJWD88O9VHF382PABZXPES6 with id 31453355e4c84577853355e4c8f57703

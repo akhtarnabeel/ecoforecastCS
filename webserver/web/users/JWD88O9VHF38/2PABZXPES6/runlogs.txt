@@ -1,0 +1,47 @@
+ok: invoked /whisk.system/alarms/interval with id 23a9035713794277a903571379927763
+{
+    "activationId": "23a9035713794277a903571379927763",
+    "annotations": [
+        {
+            "key": "path",
+            "value": "whisk.system/alarms/interval"
+        },
+        {
+            "key": "waitTime",
+            "value": 67
+        },
+        {
+            "key": "kind",
+            "value": "nodejs:6"
+        },
+        {
+            "key": "limits",
+            "value": {
+                "logs": 20,
+                "memory": 256,
+                "timeout": 60000
+            }
+        },
+        {
+            "key": "initTime",
+            "value": 231
+        }
+    ],
+    "duration": 1081,
+    "end": 1534270467563,
+    "logs": [],
+    "name": "interval",
+    "namespace": "guest",
+    "publish": false,
+    "response": {
+        "result": {
+            "status": "success"
+        },
+        "status": "success",
+        "success": true
+    },
+    "start": 1534270466482,
+    "subject": "guest",
+    "version": "0.0.2"
+}
+ok: created trigger interval-usersJWD88O9VHF382PABZXPES6
