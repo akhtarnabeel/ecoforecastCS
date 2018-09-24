@@ -45,3 +45,5 @@ Go to ```www``` folder usually the path is something like (/var/www/html or /var
 git clone https://github.com/akhtarnabeel/ecoforecastCS.git
 ```
 Then change the database-name/IPs in files do_mongo.py and wrapper.py.
+
+After that results the apache server. your webpage will be live at ```IP-OF-MACHIN/ecoforecastCS/webserver/web```.
