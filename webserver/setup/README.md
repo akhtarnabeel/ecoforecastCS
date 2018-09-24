@@ -32,9 +32,16 @@ apt-get install python-pip
 pip install pymongo
 ```
 
+Then create a database in mongodb by going to shell and typing 
+```$mongo``` 
+and then 
+```$use NAME_OF_DATABASE```
+and then create collections ```users``` and ```results```
+
 ### Code and configuration
 
 Go to ```www``` folder usually the path is something like (/var/www/html or /var/www/) and execute 
 ```
-git clone 
+git clone https://github.com/akhtarnabeel/ecoforecastCS.git
 ```
+Then change the database-name/IPs in files do_mongo.py and wrapper.py.
