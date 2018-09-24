@@ -31,3 +31,10 @@ apt-get install -y mongodb-org
 apt-get install python-pip
 pip install pymongo
 ```
+
+### Code and configuration
+
+Go to ```www``` folder usually the path is something like (/var/www/html or /var/www/) and execute 
+```
+git clone 
+```
