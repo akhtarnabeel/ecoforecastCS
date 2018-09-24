@@ -46,4 +46,4 @@ git clone https://github.com/akhtarnabeel/ecoforecastCS.git
 ```
 Then change the database-name/IPs in files do_mongo.py and wrapper.py.
 
-After that results the apache server. your webpage will be live at ```IP-OF-MACHINE/ecoforecastCS/webserver/web```.
+After that restart the apache server. your webpage will be live at ```IP-OF-MACHINE/ecoforecastCS/webserver/web```.
