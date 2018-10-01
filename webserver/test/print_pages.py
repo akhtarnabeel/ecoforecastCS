@@ -15,6 +15,10 @@ def add_main_menue():
                 <a href="https://github.com/akhtarnabeel/ecoforecastCS#how-to-run-code-on-web">Instructions!</a>
                 </div>
 	"""
+	print """  <div class="logout">
+                <a href="?logout=true">Log Out</a>
+                </div>
+	"""
                 #<a href="?new_exp=clicked">Start New Exp</a>
 
 def show_add_library_page():
@@ -27,8 +31,10 @@ def show_test_page():
 	print "I am test page"
 
 
-def show_login_page():
+def show_login_page( mess):
 	print_header()
+
+	print mess
 	print """<center>
     <h2>Welcome</h2>
     You must identify yourself to use this website. Please enter your:
@@ -55,9 +61,69 @@ def show_login_page():
 
     </table>
         <input type="submit" id="button3" name="login_button" value="login">
+        <input type="submit" id="button3" name="register_button" value="register">
 
     </form> </center>
     """
+
+
+def show_register_page(mess):
+	print_header()
+	print mess
+	print """ 
+	<center>
+	<form method="post">
+    	<table>
+	<tr>
+        <td>
+          Name:
+        </td>
+        <td>
+          <input type="text" name="name" size="20"><br>
+        </td>
+        </tr>
+
+	<tr>
+        <td>
+          Affliation:
+        </td>
+        <td>
+          <input type="text" name="affli" size="20"><br>
+        </td>
+        </tr>
+
+
+      	<tr>
+        <td>
+          Email Address:
+        </td>
+        <td>
+          <input type="text" name="email" size="20"><br>
+        </td>
+      	</tr>
+
+      	<tr>
+        <td>
+          Password:
+        </td>
+        <td>
+          <input type="password" name="pass1" size="20"><br>
+        </td>
+      	</tr>
+
+	<tr>
+        <td>
+          Confirm Password:
+        </td>
+        <td>
+          <input type="password" name="pass2" size="20"><br>
+        </td>
+        </tr>
+
+    	</table>
+        <input type="submit" id="button3" name="register_me" value="register">
+    	</form> </center>
+	"""
 
 
 

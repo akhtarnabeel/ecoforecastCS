@@ -8,6 +8,7 @@ import pymongo
 import time
 import shutil
 from pymongo import MongoClient
+import threading
 
 zipname = "supportingfiles.zip"
 
@@ -39,7 +40,7 @@ def run_code(action_name, branch, trigger_name=None):
 def create_wrapper(user_id, transaction_id, model_name, intervals, stop_date):
     #os.system("wsk -i property set --apihost 129.114.109.157")
     #os.system("wsk -i property get --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP")
-    os.system('cp /var/www/html/ecoforecastCS/webserver/web/wrapper.py exec')
+    os.system('cp /var/www/html/ecoforecastCS/webserver/test/wrapper.py exec')
     prefix = """#!/usr/bin/python
 user_id = '""" + str(user_id) + """'
 transaction_id = '""" + str(transaction_id) + """'
@@ -83,7 +84,7 @@ def configure_libraries(cran_libraries, git_libraries, code_dir, code_name):
     f.write("""CMD ["/bin/bash", "-c", "cd actionProxy && python -u actionproxy.py"]""")
     f.close()
     client = docker.from_env()
-    client.images.build(path='/var/www/html/ecoforecastCS/webserver/web/{0}'.format(code_dir), tag='alexfarra/ecoforecastdocker:{0}'.format(code_name))
+    client.images.build(path='/var/www/html/ecoforecastCS/webserver/test/{0}'.format(code_dir), tag='alexfarra/ecoforecastdocker:{0}'.format(code_name))
     image = client.images.get('alexfarra/ecoforecastdocker:{0}'.format(code_name))
     client.login(username='alexfarra',password='draco115')
     client.images.push('alexfarra/ecoforecastdocker', tag=code_name)
@@ -99,6 +100,31 @@ def prepend(file1, string):
 
 
 def openwhisk_exec(model_name, user_id, transaction_id, code, code_dir, cran_libraries=None, git_libraries=None, intervals=-1, stop_date=None):
+    t = threading.Thread(target=init_openwhisk,args=(model_name, user_id, transaction_id, code, code_dir, cran_libraries, git_libraries, intervals, stop_date))
+    t.start()
+
+def deleteAction(code_dir):
+    action_name = code_dir.replace("/", "")
+    os.system("wsk -i action delete {0}".format(action_name))
+    os.system("wsk -i trigger delete interval-{0}".format(action_name))
+    os.system("wsk -i rule delete rule-{0}".format(action_name))
+
+def deleteDatabase(transaction_id):
+    client = MongoClient('192.1.242.151', 27017)
+    db = client.EcoForecast
+    results = db.results
+    results.remove({'transaction_id': transaction_id})
+
+def deleteDir(code_dir):
+    shutil.rmtree('/var/www/html/ecoforecastCS/webserver/test/{0}'.format(code_dir))
+
+def deleteAll(code_dir, transaction_id):
+    deleteAction(code_dir)
+    deleteDatabase(transaction_id)
+    deleteDir(code_dir)
+
+
+def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_libraries=None, git_libraries=None, intervals=-1, stop_date=None):
     if not os.path.isdir(code_dir):
         os.mkdir(code_dir)
     os.chdir(code_dir)
@@ -119,29 +145,6 @@ def openwhisk_exec(model_name, user_id, transaction_id, code, code_dir, cran_lib
         configure_libraries(cran_libraries, git_libraries, code_dir, code_name)
         branch = code_name
     run_code(action_name, branch, trigger_name)
-
-def deleteAction(code_dir):
-    action_name = code_dir.replace("/", "")
-    os.system("wsk -i action delete {0}".format(action_name))
-    os.system("wsk -i trigger delete interval-{0}".format(action_name))
-    os.system("wsk -i rule delete rule-{0}".format(action_name))
-
-def deleteDatabase(transaction_id):
-    client = MongoClient('192.1.242.151', 27017)
-    db = client.EcoForecast
-    results = db.results
-    results.remove({'transaction_id': transaction_id})
-
-def deleteDir(code_dir):
-    shutil.rmtree('/var/www/html/ecoforecastCS/webserver/web/{0}'.format(code_dir))
-
-def deleteAll(code_dir, transaction_id):
-    deleteAction(code_dir)
-    deleteDatabase(transaction_id)
-    deleteDir(code_dir)
-
-
-
 
 #R_code = """retJSON <- '{
 #  \"msg\": 3
