@@ -27,22 +27,44 @@ sudo pip install ansible==2.5.2
 sudo pip install jinja2==2.9.6
 ````
 
-  - Change RAM cap:
+  - Change RAM and time cap:
     
     ```
     ~/openwhisk/incubator-openwhisk/common/scala/src/main/resources/application.conf
     ```
-    This file holds the RAM limit, change the following values to what you want, we've been using a max of 8gb:
+
+    This file holds the RAM and action time limit. Change the following values to what you want, we've been using a max of 8GB for:
     
+    For RAM:
     ```
-      # action memory configuration
+    # action memory configuration
     memory {
         min = 128 m
-        max = 512 m
-        std = 256 m
+        max = 8192 m
+        std = 512 m
     }
     ```
-
+    
+    For Action Time:
+    ```
+    # action timelimit configuration
+    time-limit {
+        min = 100 ms
+        max = 1440 m
+        std = 5 m
+    }
+    ```
+    
+    For Action Time Log:
+    ```
+    # action log-limit configuration
+    log-limit {
+        min = 0 m
+        max = 1440 m
+        std = 20 m
+    }
+    ```
+  
   - Build it. (Might have to run the following command twice!)
 
   ```
