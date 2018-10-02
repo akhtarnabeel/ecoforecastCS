@@ -4,9 +4,9 @@
 
 
 
-# User Manual
+## User Manual
   [link](/UserManual.md)
   
   
-# Setup Manual
+## Setup Manual
   [link](/SystemSetup.md)
