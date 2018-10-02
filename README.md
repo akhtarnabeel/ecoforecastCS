@@ -1,6 +1,6 @@
 # EcoForecast:
 
-EcoForecast aims to support ecology research by providing state of the art cloud based infrastructure facility for the ecological forecasts. das asd afsad  
+EcoForecast aims to support ecology research by providing state of the art cloud based infrastructure facility for the ecological forecasts. 
 
 
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
