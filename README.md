@@ -1,7 +1,5 @@
 # EcoForecast:
-![alt text](/screenshots/System.jpg | width=100)
-
-<img src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="200" height="400" />
+<img src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="500" height="400" />
 
 
 ## User Manual
