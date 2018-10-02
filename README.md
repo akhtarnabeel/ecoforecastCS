@@ -1,6 +1,8 @@
 # EcoForecast:
 ![alt text](screenshots/System.jpg)
 
+<img src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" />
+
 
 
 
