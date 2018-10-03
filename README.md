@@ -13,13 +13,20 @@ This projects aim to analyze and automate procedures to make ecological forecast
 
 
 
-Figure 1 shows the overview of the system. 
 
+<p align="center">
+<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/workflows.jpg" width="400" height="492" />
+  <br> 
+  Figure 2 : Ecological Workflows
+</p>
+
+
+Figure 2 shows the overview of the system. 
 
 <p align="center">
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
   <br> 
-  Figure 1 : EcoForecast System 
+  Figure 2 : EcoForecast System 
 </p>
 
 ## User Manual
