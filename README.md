@@ -13,6 +13,7 @@ This projects aim to analyze and automate procedures to make ecological forecast
 
 <p align="center">
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
+  <br> 
   Figure 1: EcoForecast System 
 </p>
 
