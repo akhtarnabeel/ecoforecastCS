@@ -11,6 +11,11 @@ Ecosystems are essential to human health and well-being, for example by protecti
 This projects aim to analyze and automate procedures to make ecological forecasts and update these forecasts over time as new data become available. To enhance access to the forecasts to other researchers, as well as to allow other researchers to 'compete' against other forecast models, we aim to build a scalable, cloud-based system for submitting, generating, archiving and disseminating multi-model ecological forecasts. Beyond advancing ecological research and socially-useful forecasts, this system will contribute to the more general development of a scalable and secure cyberinfrastructure for automated, repeatable scientific analyses applied to real-time data.
 
 
+
+
+Figure 1 shows the overview of the system. 
+
+
 <p align="center">
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
   <br> 
