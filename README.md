@@ -15,7 +15,7 @@ This projects aim to analyze and automate procedures to make ecological forecast
 
 
 <p align="center">
-<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/workflows.jpg" width="492" height="400" />
+<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/workflows.jpg" width="369" height="300" />
   <br> 
   Figure 2 : Ecological Workflows
 </p>
