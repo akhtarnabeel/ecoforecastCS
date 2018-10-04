@@ -23,7 +23,13 @@ Figure 1 shows examples of two such workflows. In workflow type 1, the output fr
 
 Some jobs need to be executed periodically (e.g. every day) while other jobs are executed based on external events (e.g. new weather data). 
 
-To support ecological workflows, we aim to created a secure and scalable cyberinfrastructure over multiple cloud providers.
+
+
+#### System Design:
+To support ecological workflows, we aim to create a secure and scalable cyberinfrastructure over multiple cloud providers. We use containerized approach to run ecological computations, where each job runs in a separate container. This provides the isolation and security, and help us elastically manage the resources. 
+
+We use [Apache OpenWhisk](https://openwhisk.apache.org) for running ecological code. *"Apache OpenWhisk (Incubating) is an open source, distributed Serverless platform that executes functions (fx) in response to events at any scale."*
+
 
 <p align="center">
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
