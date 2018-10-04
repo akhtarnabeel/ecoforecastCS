@@ -17,11 +17,13 @@ This projects aim to analyze and automate procedures to make ecological forecast
 </p>
 
 #### Ecological Workflows:
-Ecological workflows are composed of different prediction models.
-Figure 1 shows examples of two such workflows. In workflow type 1, the output from job A is used by job B for the prediction, and the jobs are executed serially. In workflow type 2, the output from job A is used by job C and D for the prediction, and the job C and D are executed in parallel. 
-We build an infrastructure 
 
-Cyberinfrastructure for ecological workflows using state of the art virtualization technologies for cloud computing. 
+Ecological workflows are composed of different prediction models, which consist of the jobs running serially or in parallel, and the output from a job is used as input to other jobs.  
+Figure 1 shows examples of two such workflows. In workflow type 1, the output from job A is used by job B for the prediction, and the jobs are executed serially. In workflow type 2, the output from job A is used by job C and D for the prediction, and the job C and D are executed in parallel. 
+
+Some jobs need to be executed periodically (e.g. every day) while other jobs are executed based on external events (e.g. new weather data). 
+
+To support ecological workflows, we aim to created a secure and scalable cyberinfrastructure over multiple cloud providers.
 
 <p align="center">
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
