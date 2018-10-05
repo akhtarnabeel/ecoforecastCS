@@ -36,14 +36,13 @@ We use [Apache OpenWhisk](https://openwhisk.apache.org) for running ecological c
   Figure 2 : EcoForecast System 
 </p>
 
-Figure 2 shows our implementation of OpenWhisk deployment on GENI cloud edge and Chameleon cloud. 
-
 Our implementation of EcoForecast is based on OpenWhisk. We deployed EcoForecast of GENI and Chameleon Cloud test beds. 
 
 [GENI](http://www.geni.net) (Global Environment for Network Innovations) provides a virtual environment to run experiments. Users can reserve VMs and bare metal nodes on GENI which are located in educational institutes and research labs all across the USA. 
 
 [Chameleon Cloud](https://www.chameleoncloud.org) is deployed at the University of Chicago and the Texas Advanced Computing Center, and it provides deeply programmable virtual resources for cloud computing experiments. Chameleon provides users access to powerful machines, that can be used for running computationally extensive tasks. 
 
+Figure 2 shows our implementation of OpenWhisk deployment on GENI cloud edge and Chameleon cloud. 
 
 
 ## User Manual
