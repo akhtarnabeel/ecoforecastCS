@@ -45,9 +45,9 @@ Our implementation of EcoForecast is based on OpenWhisk. We deployed EcoForecast
 Figure 2 shows our implementation of OpenWhisk deployment on GENI cloud edge and Chameleon cloud. 
 The steps below shows the running of the system.
 
-	1. A user who wishes to run computation on our system submits the job using the web interface provided.  For running the website, we are using CGI-bin for website interface. Currently, users can only submit code in R language. Users are also given the option to chose R library that their code uses. Users can also upload supporting files, e.g. configuration files, along with their code. 
+1. A user who wishes to run computation on our system submits the job using the web interface provided.  For running the website, we are using CGI-bin for website interface. Currently, users can only submit code in R language. Users are also given the option to chose R library that their code uses. Users can also upload supporting files, e.g. configuration files, along with their code. 
 
-	2. Code, along with supporting files, is provided to the **Orchestrator & Scheduler (O&S)**. O&S  decides where to place the *Serverless function*. Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, it is far from the data source so download time for the data being used can significantly affect the running time of the function. On the other hand, GENI nodes are spread all over the US and we can run Serverless function closer to the data source to quickly run and store the output. 
+2. Code, along with supporting files, is provided to the **Orchestrator & Scheduler (O&S)**. O&S  decides where to place the *Serverless function*. Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, it is far from the data source so download time for the data being used can significantly affect the running time of the function. On the other hand, GENI nodes are spread all over the US and we can run Serverless function closer to the data source to quickly run and store the output. 
 
 
 ## User Manual
