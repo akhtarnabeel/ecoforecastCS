@@ -52,6 +52,15 @@ The steps below shows the running of the system.
 Currently, VFs can run on either Chameleon Cloud or GENI nodes. 
 Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, Chameleon nodes are located at one geographical location i.e. Texas. 
 
+4. And another item.
+
+⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+
+⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
+
 ⋅⋅⋅You can have
 
 ... GENI nodes are spread all over the US at different research institutes. However, GENI nodes have limited resources, so O&S can run serverless functions with RAM up to 2GB for each function.
