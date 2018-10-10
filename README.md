@@ -60,8 +60,9 @@ Chameleon has access to powerful nodes, so O&S can run serverless functions with
 
     The O&S task is to find the perfect location for placing the VFs such that the running time is reduced and the resource requirements for VFs are fulfilled. 
 
-3. 
+3. O&S selects the node where "serverless function" will be placed as VF. Once the location is selected, O&S either creates a container image or uses one of the existing container images with all the libraries needed to run the user code. O&C then creates an OpenWhisk "action" on the selected node. Once the action is created,  O&S "invokes" the action and the code starts executing on the machine. 
 
+4. 
 
 ## User Manual
   [link](/UserManual.md)
