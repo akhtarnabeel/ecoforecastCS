@@ -47,7 +47,20 @@ The steps below shows the running of the system.
 
 1. A user who wishes to run computation on our system submits the job using the web interface provided.  For running the website, we are using CGI-bin for website interface. Currently, users can only submit code in R language. Users are also given the option to chose R library that their code uses. Users can also upload supporting files, e.g. configuration files, along with their code. 
 
-2. Code, along with supporting files, is provided to the **Orchestrator & Scheduler (O&S)**. O&S  decides where to place the *Serverless function*. Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, it is far from the data source so download time for the data being used can significantly affect the running time of the function. On the other hand, GENI nodes are spread all over the US and we can run Serverless function closer to the data source to quickly run and store the output. 
+
+2. Code, along with supporting files, is provided to the **Orchestrator & Scheduler (O&S)**. O&S  decides where to place the *Serverless function* as Virtual Functions (VFs) for running computation for ecological research. 
+Currently, VFs can run on either Chameleon Cloud or GENI nodes. 
+Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, Chameleon nodes are located at one geographical location i.e. Texas. 
+
+GENI nodes are spread all over the US at different research institutes. However, GENI nodes have limited resources, so O&S can run serverless functions with RAM up to 2GB for each function.
+
+Although VFs running on Chameleon cloud have more resources, they are bound to one geographical location. The VFs can be geographically far from the data source, so the download time for the input data can significantly impact the total running time of a function. Morever, saving the output from VF into a database which is geographically far from where function executes, can also significantly impact the running time of the function. 
+
+Although GENI nodes have limited computation power, the functions can run at different geographical locations and VFs can be placed closer to the data source. This can reduce the download time for input data and significantly reduce the running time for the VF. 
+
+The O&S task is to find the perfect location for placing the VFs such that the running time is reduced and the resource requirements for VFs are fulfilled. 
+
+3. 
 
 
 ## User Manual
