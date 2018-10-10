@@ -52,6 +52,8 @@ The steps below shows the running of the system.
 Currently, VFs can run on either Chameleon Cloud or GENI nodes. 
 Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, Chameleon nodes are located at one geographical location i.e. Texas. 
 
+⋅⋅⋅You can have
+
 ... GENI nodes are spread all over the US at different research institutes. However, GENI nodes have limited resources, so O&S can run serverless functions with RAM up to 2GB for each function.
 
 ... Although VFs running on Chameleon cloud have more resources, they are bound to one geographical location. The VFs can be geographically far from the data source, so the download time for the input data can significantly impact the total running time of a function. Morever, saving the output from VF into a database which is geographically far from where function executes, can also significantly impact the running time of the function. 
