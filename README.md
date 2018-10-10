@@ -64,9 +64,15 @@ Chameleon has access to powerful nodes, so O&S can run serverless functions with
 
 4. Prediction model code that runs on OpenWhisk needs access to external data which is used as input to prediction models. A user can either upload data with the code, or the data is downloaded from different data sources as the code executes. Once the prediction is made, the output of the VF is saved in our database. Currently, we are using MongoDB for storing VF output. 
 
+5. Once the output is saved in the database, the user can access the output using the GUI interface. 
+
+6. Our GUI interface provides the user with different tools that can be used to understand the prediction model outputs. We used [Plotly](https://plot.ly) for plotting and comparing the output from the different prediction models.
+
 ## User Manual
-  [link](/UserManual.md)
   
+The user manual has instructions for running the system. [link](/UserManual.md)
   
 ## Setup Manual
-  [link](/SystemSetup.md)
+Setup manual has instructions for setting up the system on any cloud environment.  [link](/SystemSetup.md)
+
+
