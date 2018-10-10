@@ -62,7 +62,7 @@ Chameleon has access to powerful nodes, so O&S can run serverless functions with
 
 3. O&S selects the node where "serverless function" will be placed as VF. Once the location is selected, O&S either creates a container image or uses one of the existing container images with all the libraries needed to run the user code. O&C then creates an OpenWhisk "action" on the selected node. Once the action is created,  O&S "invokes" the action and the code starts executing on the machine. 
 
-4. 
+4. Prediction model code that runs on OpenWhisk needs access to external data which is used as input to prediction models. A user can either upload data with the code, or the data is downloaded from different data sources as the code executes. Once the prediction is made, the output of the VF is saved in our database. Currently, we are using MongoDB for storing VF output. 
 
 ## User Manual
   [link](/UserManual.md)
