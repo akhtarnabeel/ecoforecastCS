@@ -70,9 +70,9 @@ Chameleon has access to powerful nodes, so O&S can run serverless functions with
 
 ## User Manual
   
-The user manual has instructions for running the system. [link](/UserManual.md)
+The user manual has instructions for running the system. [[link]](/UserManual.md)
   
 ## Setup Manual
-Setup manual has instructions for setting up the system on any cloud environment.  [link](/SystemSetup.md)
+Setup manual has instructions for setting up the system on any cloud environment.  [[link]](/SystemSetup.md)
 
 
