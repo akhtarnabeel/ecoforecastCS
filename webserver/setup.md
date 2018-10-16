@@ -36,12 +36,19 @@ apt-get install python-pip
 pip install pymongo
 ```
 
-Our webserver code assumes the presence of a database(you can name it whatever you want and update the do_mongo.py file). One can create a database in mongodb by going to shell and typing 
-```$mongo``` 
-and then 
-```$use NAME_OF_DATABASE```. Right now we are using two main tables, users: to store user related data and results: to store data for each experiment a user runs in our system (time, name, results etc.).
-and then create collections ```users``` and ```results```
-**What do we use in our case???? What should I use for our EcoForecast?!?**
+Now we need to create database and tables for the database. One can create a database in mongodb by going to shell and typing 
+```
+mongo
+```
+Create database with name *EcoForecast*. Note that if you chose a different database name, you should update it in *do_mongo.py* file.
+```
+use EcoForecast
+```
+Right now we are using two main tables, users: to store user related data and results: to store data for each experiment a user runs in our system (time, name, results etc.). Create these tables by running following
+```
+users
+results
+```
 
 ### Code and configuration
 
