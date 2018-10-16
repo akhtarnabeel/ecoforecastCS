@@ -6,20 +6,24 @@ ssh to the machine where you want to setup webserver and follow the following in
 #install - cgi-bin 
 apt-get update
 apt-get install apache2
+```
 
-# then paste the following lines in /etc/apache2/sites-enabled/000-default.conf or /etc/apache2/sites-enabled/default.conf
-#  <Directory /var/www/html/>
-#                 Options ExecCGI Indexes FollowSymLinks MultiViews
-#                 AllowOverride None
-#                 Order allow,deny
-#                 allow from all
-#                 AddHandler cgi-script .py .html
-#  </Directory>
-# then execute the following commands in the shell.
+Then paste the following lines in /etc/apache2/sites-enabled/000-default.conf or /etc/apache2/sites-enabled/default.conf
+```
+<Directory /var/www/html/>
+                 Options ExecCGI Indexes FollowSymLinks MultiViews
+                 AllowOverride None
+                 Order allow,deny
+                 allow from all
+                 AddHandler cgi-script .py .html
+</Directory>
+```
 
+Then execute the following commands in the shell.
+
+```
 a2enmod cgi
 service apache2 restart
-
 ```
 
 ### MongoDB
