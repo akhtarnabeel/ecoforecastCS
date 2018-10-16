@@ -12,6 +12,9 @@ import threading
 
 zipname = "supportingfiles.zip"
 
+MongoIP = '192.1.242.151'
+MongoPort =  27017
+
 """
 @param user_id: string
 @param code: string
@@ -100,6 +103,7 @@ def prepend(file1, string):
 
 
 def openwhisk_exec(model_name, user_id, transaction_id, code, code_dir, cran_libraries=None, git_libraries=None, intervals=-1, stop_date=None):
+    # create new thread and run the code
     t = threading.Thread(target=init_openwhisk,args=(model_name, user_id, transaction_id, code, code_dir, cran_libraries, git_libraries, intervals, stop_date))
     t.start()
 
@@ -110,7 +114,7 @@ def deleteAction(code_dir):
     os.system("wsk -i rule delete rule-{0}".format(action_name))
 
 def deleteDatabase(transaction_id):
-    client = MongoClient('192.1.242.151', 27017)
+    client = MongoClient(MongoIP, MongoPort)
     db = client.EcoForecast
     results = db.results
     results.remove({'transaction_id': transaction_id})
@@ -125,37 +129,52 @@ def deleteAll(code_dir, transaction_id):
 
 
 def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_libraries=None, git_libraries=None, intervals=-1, stop_date=None):
+    '''
+    initialize and run openWhish
+    :param model_name: name of model
+    :param user_id: user id defined
+    :param transaction_id:
+    :param code: name of file with code
+    :param code_dir: directory where code is
+    :param cran_libraries: cran libraries needed
+    :param git_libraries: git libraries needed
+    :param intervals:
+    :param stop_date:
+    :return:
+    '''
+
+    # create code directory
     if not os.path.isdir(code_dir):
         os.mkdir(code_dir)
+    # change to current working directory to code directory
     os.chdir(code_dir)
-    branch = 'master'
+    # creating code name
     code_name = code_dir.replace("/", "")
+    # creating action name
     action_name= str(code_name)
     trigger_name=None
+    # create wrapper for the code and save it as exec
     create_wrapper(user_id, transaction_id, model_name, intervals, stop_date)
+    #
     create_code(code)
+
+    # Set intervals for running triggers
     if intervals > 0:
         stop_date = str(stop_date) + "T23:59:00.000Z"
-        trigger_name = configure_intervals(action_name, intervals, stop_date)   
+        trigger_name = configure_intervals(action_name, intervals, stop_date)
+    # Install cran and git libraries
     if cran_libraries!="" or git_libraries!="":
         cran_libraries = cran_libraries.replace(" ", "")
         cran_libraries = cran_libraries.split("\n")
         git_libraries = git_libraries.replace(" ", "")
         git_libraries = git_libraries.split("\n")
+        # install libraries
         configure_libraries(cran_libraries, git_libraries, code_dir, code_name)
+        # name used for locating docker container
         branch = code_name
+
+    # run the openWhisk code
     run_code(action_name, branch, trigger_name)
-
-#R_code = """retJSON <- '{
-#  \"msg\": 3
-#}'
-#write(retJSON, file="out.json")
-#cat('TEST')"""
-#openwhisk_exec("test", "alex", "4", R_code, "users/alex/4", cran_libraries='slipify\n', git_libraries='EcoForecast/ecoforecastR\n', intervals=2, stop_date='2018-08-14')
-
-#time.sleep(5)
-
-#deleteAll('users/alex/4', '4')
 
 
 

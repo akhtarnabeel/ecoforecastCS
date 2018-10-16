@@ -5,8 +5,12 @@ from pymongo import MongoClient
 import string
 import random
 import os
+
+MongoIP = '192.1.242.151'
+MongoPort =  27017
+
 client = MongoClient()
-client = MongoClient('localhost', 27017)
+client = MongoClient(MongoIP, MongoPort)
 db = client.EcoForecastTest
 users = db.users
 results = db.results
