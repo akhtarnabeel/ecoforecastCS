@@ -63,7 +63,7 @@ Then change the database-name/IPs in files do_mongo.py and wrapper.py.
 Create a folder named as 'users' withen 'web' folder and grant web users permission,
 ```chown www-data:www-data users```
 
-Also execute the following commands to give cgi-bin permission to all the python files and execute following in web folder
+Also execute the following commands to give cgi-bin permission to all the python files and execute following in 'web' folder
  
  ```
  sudo chmod 755 *.py 
