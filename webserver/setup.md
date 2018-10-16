@@ -41,7 +41,7 @@ Then create a database in mongodb by going to shell and typing
 and then 
 ```$use NAME_OF_DATABASE```
 and then create collections ```users``` and ```results```
-**HOW???? Please Explain!**
+**What do we use in our case???? What should I use for our EcoForecast?!?**
 
 ### Code and configuration
 
