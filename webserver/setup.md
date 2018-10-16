@@ -40,7 +40,7 @@ Now we need to create database and tables for the database. One can create a dat
 ```
 mongo
 ```
-Create database with name *EcoForecast*. Note that if you chose a different database name, you should update it in *do_mongo.py* file.
+Create database with name *EcoForecast*. Note that if you chose a different database name, you should update it in [*do_mongo.py*](https://github.com/akhtarnabeel/ecoforecastCS/blob/c260f93557115b49c50b7dec1582def052796d93/webserver/web/do_mongo.py#L10) file.
 ```
 use EcoForecast
 ```
