@@ -44,7 +44,7 @@ Create database with name *EcoForecast*. Note that if you chose a different data
 ```
 use EcoForecast
 ```
-Right now we are using two main tables, users: to store user related data and results: to store data for each experiment a user runs in our system (time, name, results etc.). Create these tables by running following
+Right now we are using two main tables, users: to store user related data and results: to store data for each experiment a user runs in our system (time, name, results etc.). Create these tables by running following (It is easy to manipulate MongoDB with some UI base client such as Compass[https://www.mongodb.com/products/compass])
 ```
 users
 results
