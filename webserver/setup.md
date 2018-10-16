@@ -8,7 +8,7 @@ apt-get update
 apt-get install apache2
 ```
 
-Then paste the following lines in /etc/apache2/sites-enabled/000-default.conf or /etc/apache2/sites-enabled/default.conf
+Then paste the following lines in */etc/apache2/sites-enabled/000-default.conf* or */etc/apache2/sites-enabled/default.conf*
 ```
 <Directory /var/www/html/>
                  Options ExecCGI Indexes FollowSymLinks MultiViews
