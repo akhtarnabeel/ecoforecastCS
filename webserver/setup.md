@@ -49,8 +49,8 @@ users: to store user related data
 results: to store data for each experiment a user runs in our system (time, name, results etc.). 
 Create these tables by running following commands on the mongo shell ([More information on MongoDB and how to create collections](https://www.tutorialspoint.com/mongodb/mongodb_create_collection.htm). Also, it's easy to manipulate MongoDB with some UI based client such as [Compass](https://www.mongodb.com/products/compass))
 ```
-users
-results
+db.createCollection("users")
+db.createCollection("results")
 ```
 
 ### Code and configuration
