@@ -6,20 +6,24 @@ ssh to the machine where you want to setup webserver and follow the following in
 #install - cgi-bin 
 apt-get update
 apt-get install apache2
+```
 
-# then paste the following lines in /etc/apache2/sites-enabled/000-default.conf or /etc/apache2/sites-enabled/default.conf
-#  <Directory /var/www/html/>
-#                 Options ExecCGI Indexes FollowSymLinks MultiViews
-#                 AllowOverride None
-#                 Order allow,deny
-#                 allow from all
-#                 AddHandler cgi-script .py .html
-#  </Directory>
-# then execute the following commands in the shell.
+Then paste the following lines in */etc/apache2/sites-enabled/000-default.conf* or */etc/apache2/sites-enabled/default.conf*
+```
+<Directory /var/www/html/>
+                 Options ExecCGI Indexes FollowSymLinks MultiViews
+                 AllowOverride None
+                 Order allow,deny
+                 allow from all
+                 AddHandler cgi-script .py .html
+</Directory>
+```
 
+Then execute the following commands in the shell.
+
+```
 a2enmod cgi
 service apache2 restart
-
 ```
 
 ### MongoDB
@@ -32,11 +36,12 @@ apt-get install python-pip
 pip install pymongo
 ```
 
-Then create a database in mongodb by going to shell and typing 
+Our webserver code assumes the presence of a database(you can name it whatever you want and update the do_mongo.py file). One can create a database in mongodb by going to shell and typing 
 ```$mongo``` 
 and then 
-```$use NAME_OF_DATABASE```
+```$use NAME_OF_DATABASE```. Right now we are using two main tables, users: to store user related data and results: to store data for each experiment a user runs in our system (time, name, results etc.).
 and then create collections ```users``` and ```results```
+**What do we use in our case???? What should I use for our EcoForecast?!?**
 
 ### Code and configuration
 
