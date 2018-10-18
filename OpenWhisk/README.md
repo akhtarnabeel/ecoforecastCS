@@ -128,6 +128,7 @@ sudo pip install jinja2==2.9.6
      ```
      ./bin/wsk property set --auth `cat ansible/files/auth.guest`
      ```
+     Run 'wsk property get --auth' to see the new value.
   
   - Change local environment to include openwhisk. E.g. add following to the file ~/.profile
   
