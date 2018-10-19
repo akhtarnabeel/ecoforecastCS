@@ -12,6 +12,7 @@ def add_main_menue():
 	print """  <div class="topnav">
                 <a href="?show_home=true">Home</a>
                 <a href="?show_old=clicked">Show Logs</a>
+                <a href="?compare_models=clicked">Compare Models</a>
                 <a href="https://github.com/akhtarnabeel/ecoforecastCS#how-to-run-code-on-web">Instructions!</a>
                 </div>
 	"""
@@ -363,4 +364,151 @@ def show_one_result(user_id):
 """
 
 
+
+def show_compare_models(user_id, model1 = None, model2 = None):
+	print_header()
+	add_main_menue()
+	print """ <center>
+	 <form method="post">
+         Model 1: <input type="text" value= "{1}" name="model1" size="20"><br>
+         Model 2: <input type="text" value= "{2}" name="model2" size="20"><br>
+         <input type="hidden" name="user_id" value="{0}">
+	 <input type="submit" id="button3" name="compare_models" value="Compare">
+    	 </form>
+	""".format(user_id, model1, model2)
+
+	if model1 is None and model2 is None:
+		return
+
+
+	try:
+		all_variables_model1 = get_all_variables("users/"+user_id+"/view_results/model1.json")
+		all_variables_model2 = get_all_variables("users/"+user_id+"/view_results/model2.json")
+	except:
+		print "There was no body in json"
+		return
+
+	print """ 
+	<html>
+	<head>
+    	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    	<script type="text/javascript">
+        function plot_this(){
+
+        var e = document.getElementById("x_var_m1");
+        var x1_to_plot = e.options[e.selectedIndex].text;
+        var e = document.getElementById("y_var_m1");
+        var y1_to_plot = e.options[e.selectedIndex].text;
+
+        var e = document.getElementById("x_var_m2");
+        var x2_to_plot = e.options[e.selectedIndex].text;
+        var e = document.getElementById("y_var_m2");
+        var y2_to_plot = e.options[e.selectedIndex].text;
+
+        var x1data = null; var y1data = null;
+	var x2data = null; var y2data = null;
+	var xlab = null; var ylab = null;
+	var Moldel1 = null; var Moldel2 = null;
+	"""
+
+	print "$.getJSON(\'users/"+user_id+"/view_results/model1.json\'"
+	print """ , function(data) {
+	x1data = data.data.body[x1_to_plot];
+        y1data = data.data.body[y1_to_plot];
+        xlab = data.data.xlab;
+        ylab = data.data.ylab;
+        Model1 = {
+                x: x1data,
+                y: y1data, 
+                mode: 'markers',
+		name: 'Model 1'
+        };
+	});"""
+	print "$.getJSON(\'users/"+user_id+"/view_results/model2.json\'"
+        print """ , function(data) {
+        x2data = data.data.body[x2_to_plot];
+        y2data = data.data.body[y2_to_plot];
+        xlab = data.data.xlab;
+        ylab = data.data.ylab;
+        var Model2 = {
+                x: x2data,
+                y: y2data,
+                mode: 'markers',
+		name: 'Model 2'
+        };
+        var data = [Model1, Model2];
+        var layout = {
+        xaxis: {
+        title: xlab
+        },
+        yaxis: {
+        title: ylab
+        },
+        };
+        Plotly.newPlot('myDiv', data, layout);
+        });"""
+
+
+
+
+
+
+
+
+
+        print """}
+	</script>
+  	</head>
+	<body>"""
+
+	print """ Plot these results! <br>
+      	<table>
+      	<tr>
+	<td> Model 1:</td>
+     		<form name="myform" action="javascript:plot_this()">
+     		</td><td><select id="x_var_m1">"""
+	for i in all_variables_model1:
+        	print """ 
+         		<option value="{0}">{0}</option>""".format(i)
+	print """</select></td><td> VS </td> 
+		 <td><select id="y_var_m1"> """
+	for i in all_variables_model1:
+        	print """ 
+			<option value="{0}">{0}</option> """.format(i)
+
+	print """</select></td>
+
+	<td> Model 2: </td>
+	<td>
+     		<form name="myform" action="javascript:plot_this()">
+     		<select id="x_var_m2">"""
+
+	for i in all_variables_model2:
+        	print """ 
+         		<option value="{0}">{0}</option>""".format(i)
+	print """</select></td><td> VS </td> 
+		 <td><select id="y_var_m2"> """
+	for i in all_variables_model2:
+        	print """ 
+			<option value="{0}">{0}</option> """.format(i)
+
+	print """</select></td>
+
+	<td>
+        <input name="Submit"  type="submit" value="Plot"/>
+    	</form>
+	</td>
+
+	</center>
+
+	<table>
+	<tr>
+ 	<div id="myDiv">
+        <!-- Plotly chart will be drawn inside this DIV -->
+ 	</div>
+	</tr>
+	</body>
+	</html>
+	"""
 

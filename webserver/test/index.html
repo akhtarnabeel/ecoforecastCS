@@ -31,14 +31,15 @@ def do_authenticate(form):
 		email = form["email"].value
 		passw = form["pass"].value
 		#check from database
-		resp = mongo_do_authenticate(email,passw)
-		if "user does not exist" in resp:
-			return False
+		status, resp = mongo_do_authenticate(email,passw)
+
+		if not status:
+			return False, resp
 		else:
 			set_cookie(email, resp)
-		return True 
+			return True, "You have logged in"
 	else:
-		return False
+		return False, "Please submit all fields"
 
 def create_job(form, cookie):
 
@@ -88,15 +89,20 @@ def show_logs(user_id):
 	rec = mongo_get_results(user_id)
 	show_all_record_page(rec, "redirect")
 
-def view_one_result(user_id, transaction_id):
+def download_one_result(user_id, transaction_id, filename = None):
 	res = mongo_get_one_result(user_id, transaction_id)
-#	print_header()
-	#print res
-	f = open("users/"+user_id+"/view_results/view.json", "wb")
-	f.write(json.dumps(res))
-	f.close()
-	show_one_result(user_id)
 
+        if not os.path.exists("users/"+user_id+"/view_results"):
+                os.makedirs("users/"+user_id+"/view_results")
+
+	if filename == None:
+		f = open("users/"+user_id+"/view_results/view.json", "wb")
+		f.write(json.dumps(res))
+		f.close()
+	else:
+		f = open("users/"+user_id+"/view_results/"+filename, "wb")
+                f.write(json.dumps(res))
+                f.close()
 
 def take_to(url):
 	print_header()
@@ -132,8 +138,21 @@ if __name__=="__main__":
 		pass
 	# get form fields
 	form = cgi.FieldStorage()
+	screen_message = None
+
+        if "authen_account" and "admin" in form:
+                if mongo_approve_user("admin", form["admin"].value):
+                        screen_message =  "user approved"
+
+        if "authen_account" and "user" in form:
+                if mongo_approve_user("user", form["user"].value):
+                        screen_message =  "user approved | you may login now!"
+
+
+
 	if "remember_me" in cookie:
 		user_id = cookie["remember_me"].value
+
 		if "new_exp" in form and "code_libs" not in form:
 			show_lib_page()
 
@@ -157,29 +176,44 @@ if __name__=="__main__":
 					take_to("?show_old=clicked&user_id="+str(user_id))
 			else:
 				show_error_page("Ever consider submitting code?")
+
 		elif "show_one_result" in form and "user_id" in form and "transaction_id" in form:
-			#print_header()
-			#print "I am here"
-			view_one_result(form["user_id"].value, form["transaction_id"].value)
+			download_one_result(form["user_id"].value, form["transaction_id"].value)
+			show_one_result(user_id)
 
 		elif "logout" in form:
 			delete_cookie(cookie)
 			show_login_page(" ")
+
+		elif "compare_models" in form:
+			if "model1" and "model2" and "user_id" in form:
+				download_one_result(form["user_id"].value, form["model1"].value, "model1.json")
+				download_one_result(form["user_id"].value, form["model2"].value, "model2.json")
+				show_compare_models(user_id, "model1.json", "model2.json")	
+			else:
+				show_compare_models(user_id)
+
 		else:
 			show_home_page()
 
 
 	elif "login_button" in form:
-		if do_authenticate(form):
+		status, resp = do_authenticate(form)
+		if status:
 			show_home_page()
 		else:
-			show_login_page("email or password is incorrect!")
+			show_login_page(resp)
+
 	elif "register_button" in form:
 		show_register_page(" ")
+
 	elif "register_me" in form:
 		if register_user(form):
 			show_login_page("You can login now")
 		else:
 			pass
 	else:
-		show_login_page(" ")
+		if screen_message !=  None:
+			show_login_page(screen_message)
+		else:
+			show_login_page( " " )
