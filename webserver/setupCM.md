@@ -4,8 +4,8 @@
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
 
 2. Install docker-py using pip
-'''
+```
 pip install docker
-'''
+```
 
 
