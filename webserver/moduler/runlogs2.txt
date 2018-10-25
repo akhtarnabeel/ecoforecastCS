@@ -1,0 +1,5 @@
+error: Invalid argument(s). File 'supportingfiles.zip' is not a valid file or it does not exist
+Run 'wsk --help' for usage.
+error: Unable to create rule 'rule-users81O8W3KDOE0QUIQ9S24WD1': trigger /guest/None does not exist (code 7eba1a6dba60a561ec486b8231adf6a6)
+error: Unable to invoke action 'users81O8W3KDOE0QUIQ9S24WD1': The requested resource does not exist. (code 82fba1faf7f3d6df6efa7474fb9eb438)
+Run 'wsk --help' for usage.

@@ -1,0 +1,22 @@
+ 
+2018-10-24 17:41:11,159 INFO received:FieldStorage(None, None, [MiniFieldStorage('cran_lib', "['']"), MiniFieldStorage('git_lib', "['khufkens/MODISTools']"), MiniFieldStorage('code_dir', 'users/81O8W3KDOE0Q/8MM569L5IV'), MiniFieldStorage('token', 'someToken'), MiniFieldStorage('code_name', 'users81O8W3KDOE0Q8MM569L5IV'), MiniFieldStorage('trigger_name', 'None')])
+2018-10-24 17:41:11,160 INFO code_dir: users/81O8W3KDOE0Q/8MM569L5IV
+2018-10-24 17:48:12,238 ERROR Error is creating container!
+Traceback (most recent call last):
+  File "/var/www/html/ecoforecastCS/webserver/moduler/container-maker/build_image.py", line 68, in build_container
+    client.images.build(path='/tmp/{0}'.format(code_name), tag='alexfarra/ecoforecastdocker:{0}'.format(code_name))
+  File "/usr/local/lib/python2.7/dist-packages/docker/models/images.py", line 264, in build
+    for chunk in internal_stream:
+  File "/usr/local/lib/python2.7/dist-packages/docker/utils/json_stream.py", line 66, in split_buffer
+    for data in stream_as_text(stream):
+  File "/usr/local/lib/python2.7/dist-packages/docker/utils/json_stream.py", line 22, in stream_as_text
+    for data in stream:
+  File "/usr/local/lib/python2.7/dist-packages/docker/api/client.py", line 311, in _stream_helper
+    data = reader.read(1)
+  File "/usr/local/lib/python2.7/dist-packages/urllib3/response.py", line 430, in read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+  File "/usr/lib/python2.7/contextlib.py", line 35, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/usr/local/lib/python2.7/dist-packages/urllib3/response.py", line 349, in _error_catcher
+    raise ProtocolError('Connection broken: %r' % e, e)
+ProtocolError: ('Connection broken: IncompleteRead(0 bytes read)', IncompleteRead(0 bytes read))

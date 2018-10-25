@@ -46,9 +46,9 @@ def send_email(who, name, email, affliation, user_id, work_dir):
 	msg['To'] = " "
 	msg['Subject'] = "EcoForecast account Authentication!"
 	if who == "admin":
-		body = "http://192.1.242.151/ecoforecastCS/webserver/test/?authen_account=yes&admin="+work_dir
+		body = ''' Hi, \n You are the admin for EcoForecast. A user just applied for the registration with following information \n Name: {0}  \n email: {1}  \n Affliation: {2} \n Please verify the user by clicking on the link below \n http://192.1.242.151/ecoforecastCS/webserver/test/?authen_account=yes&admin={3}'''.format(name, email, affliation, work_dir)
 	else:
-		body = "http://192.1.242.151/ecoforecastCS/webserver/test/?authen_account=yes&user="+work_dir
+		body = ''' Hi, \n This a message from EcoForecast. You just applied for the registration with following information \n Name: {0}  \n email: {1}  \n Affliation: {2} \n We are waiting for the admin approval. Please verify your email id  by clicking on the link below \n http://192.1.242.151/ecoforecastCS/webserver/test/?authen_account=yes&user={3}'''.format(name, email, affliation, work_dir)
 
 	msg.attach(MIMEText(body, 'plain'))
 	server = smtplib.SMTP('smtp.gmail.com', 587)

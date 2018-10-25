@@ -12,15 +12,14 @@ import threading
 import socket
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s', filename='EcoForecast.log',
-                    filemode='w')
+logging.basicConfig(level = logging.INFO,format = '%(asctime)s %(levelname)s %(message)s',filename = 'EcoForecast.log',filemode = 'w')
 
 zipname = "supportingfiles.zip"
 
 MongoIP = '192.1.242.151'
 MongoPort = 27017
 
-ContainerIP = '192.1.242.34'
+ContainerIP = '192.1.242.39'
 ContainerPort = 12345
 ContainerNodePassword = 'sadsafsdad21312423ewdsdfa'
 
@@ -35,8 +34,7 @@ ContainerNodePassword = 'sadsafsdad21312423ewdsdfa'
 
 def run_code(action_name, branch, trigger_name=None):
     with open("runlogs2.txt", 'w') as f:
-        cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(
-            zipname) + ' -m 8000 --docker alexfarra/ecoforecastdocker:{0}'.format(branch)
+        cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(zipname) + ' -m 8000 --docker alexfarra/ecoforecastdocker:{0}'.format(branch)
         p = subprocess.Popen(cmd, stdout=f, stderr=f, shell=True)
         p.wait()
         if (trigger_name != None):
@@ -137,24 +135,28 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotCran':
+        s.close()
         return False
 
     s.send(str(git_libraries).encode('ascii'))
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotGit':
+        s.close()
         return False
 
     s.send(code_dir.encode('ascii'))
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotCodeDir':
+        s.close()
         return False
 
     s.send(code_name.encode('ascii'))
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotCodeName':
+        s.close()
         return False
 
     # make sure it work
@@ -162,8 +164,10 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     s_data = s.recv(1024)
     s_data.strip()
     if s_data == 'END':
+        s.close()
         return True
     else:
+        s.close()
         return False
 
     f = open("Dockerfile", "w")
@@ -252,8 +256,8 @@ def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_lib
             os.mkdir(code_dir)
         # change to current working directory to code directory
         os.chdir(code_dir)
-	# brach is master always by default
-	branch = "master"
+        # default container branch is master
+        branch = 'master'
         # creating code name
         code_name = code_dir.replace("/", "")
         # creating action name
@@ -282,8 +286,7 @@ def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_lib
                 logging.info("Error: Cannot create container with libraries")
                 return
             logging.info('Container created')
-
-       	    # name used for locating docker container
+            # name used for locating docker container
             branch = code_name
 
         # run the openWhisk code

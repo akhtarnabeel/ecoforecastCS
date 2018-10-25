@@ -1,0 +1,6 @@
+ 
+2018-10-24 17:41:10,963 INFO Initializing OpenWhisk...
+2018-10-24 17:41:10,979 INFO Creating container with required libraries
+2018-10-24 17:41:10,979 INFO Calling container function
+2018-10-24 17:41:10,979 INFO sending container maker:{'cran_lib': "['']", 'git_lib': "['khufkens/MODISTools']", 'code_dir': 'users/81O8W3KDOE0Q/8MM569L5IV', 'token': u'someToken', 'code_name': 'users81O8W3KDOE0Q8MM569L5IV', 'trigger_name': 'None'}
+2018-10-24 17:48:12,813 INFO Container being created ...

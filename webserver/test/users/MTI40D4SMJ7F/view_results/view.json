@@ -1,0 +1,1 @@
+{"stderr": "Loading required package: rjags\nLoading required package: coda\nLinked to JAGS 4.3.0\nLoaded modules: basemod,bugs\nError in setwd(\"/dataFiles\") : cannot change working directory\nExecution halted\n", "stdout": ""}

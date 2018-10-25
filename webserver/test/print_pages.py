@@ -61,8 +61,8 @@ def show_login_page( mess):
       </tr>
 
     </table>
-        <input type="submit" id="button3" name="login_button" value="login">
         <input type="submit" id="button3" name="register_button" value="register">
+        <input type="submit" id="button3" name="login_button" value="login">
 
     </form> </center>
     """
