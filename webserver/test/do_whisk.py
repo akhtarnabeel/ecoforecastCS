@@ -12,7 +12,7 @@ import threading
 import socket
 import logging
 
-logging.basicConfig(level = logging.INFO,format = '%(asctime)s %(levelname)s %(message)s',filename = 'EcoForecast.log',filemode = 'w')
+logging.basicConfig(level = logging.INFO,format = '%(asctime)s %(levelname)s %(message)s',filename = 'EcoForecast.log',filemode = 'a')
 
 zipname = "supportingfiles.zip"
 
@@ -34,7 +34,7 @@ ContainerNodePassword = 'sadsafsdad21312423ewdsdfa'
 
 def run_code(action_name, branch, trigger_name=None):
     with open("runlogs2.txt", 'w') as f:
-        cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(zipname) + ' -m 8000 --docker alexfarra/ecoforecastdocker:{0}'.format(branch)
+        cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(zipname) + ' -m 8000 -t 86400000 --docker alexfarra/ecoforecastdocker:{0}'.format(branch)
         p = subprocess.Popen(cmd, stdout=f, stderr=f, shell=True)
         p.wait()
         if (trigger_name != None):
@@ -109,7 +109,7 @@ def configure_libraries(cran_libraries, git_libraries, code_dir, code_name):
 def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_name):
     # connect to server
     host = ContainerIP
-
+    logging.info('Going to send to container make: cran-lib:' + str(cran_libraries) + " git-lib:"+str(git_libraries) )
     # Define the port on which you want to connect
     port = ContainerPort
 
@@ -164,12 +164,13 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     s_data = s.recv(1024)
     s_data.strip()
     if s_data == 'END':
+	logging.info('Received END from container maker so good to go!')
         s.close()
         return True
     else:
         s.close()
         return False
-
+''' 
     f = open("Dockerfile", "w")
     f.write("FROM alexfarra/ecoforecastdocker:master\n")
     for depend in cran_libraries:
@@ -188,7 +189,7 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     image = client.images.get('alexfarra/ecoforecastdocker:{0}'.format(code_name))
     client.login(username='alexfarra', password='draco115')
     client.images.push('alexfarra/ecoforecastdocker', tag=code_name)
-
+'''
 
 # Works
 def prepend(file1, string):
@@ -290,12 +291,13 @@ def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_lib
             branch = code_name
 
         # run the openWhisk code
-        logging.info('Running Code')
+        logging.info('Creating Action and Triggering it')
         run_code(action_name, branch, trigger_name)
-
+	logging.info('Action code is Triggered...')
     except:
         logging.exception("ERROR in running OpenWhisk job...")
 
 
 #configure_libraries_server([], ["khufkens/MODISTools"], "Test2", "WithLibraries")
 
+#logging.exception("ERROR in running OpenWhisk job...")

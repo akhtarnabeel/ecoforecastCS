@@ -10,7 +10,8 @@ from print_pages import *
 from do_mongo import *
 from do_whisk import *
 import json 
-
+import logging
+logging.basicConfig(level = logging.INFO,format = '%(asctime)s %(levelname)s %(message)s',filename = 'EcoForecast.log',filemode = 'a')
 
 def set_cookie(email, work_dir):
 	cookie = Cookie.SimpleCookie()
@@ -70,6 +71,7 @@ def create_job(form, cookie):
 
 	try:
 		#date format: 2018-08-16, year-mon-day
+		logging.info('Calling Openwhisk function from do_whisk ... ')
 		openwhisk_exec(model_name, user_dir, transaction_dir, r_code, "users/"+user_dir+"/"+transaction_dir, cran_libs, git_libs, repeat_interval, end_date )
 	except:
 		pass
