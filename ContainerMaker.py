@@ -96,12 +96,12 @@ def threaded(c):
     for depend in cran_libraries:
         if depend != '':
             f.write(
-                """RUN R -q -e "install.packages('{0}', dependencies=TRUE, repos='http://cran.rstudio.com/')"\n""".format(depend))
+                """RUN R -q -e "install.packages('{0}', dependencies=TRUE, repos='http://cran.rstudio.com/')"\n""".format(depend.strip()))
 
     # add git dependencies
     for depend in git_libraries:
         if depend != '':
-            f.write("""RUN R -q -e "library(devtools); install_github('{0}')"\n""".format(depend))
+            f.write("""RUN R -q -e "library(devtools); install_github('{0}')"\n""".format(depend.strip()))
 
     f.write("""CMD ["/bin/bash", "-c", "cd actionProxy && python -u actionproxy.py"]""")
     f.close()
