@@ -66,6 +66,16 @@ Currently, VFs can run on either Chameleon Cloud or GENI nodes.
 
 6. Our GUI interface provides the user with different tools that can be used to understand the prediction model outputs. We used [Plotly](https://plot.ly) for plotting and comparing the output from the different prediction models.
 
+
+<p align="center">
+<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/EcoForecast.jpg" width="700" height="583" />
+  <br> 
+  Figure 3 : EcoForecast Architecture 
+</p>
+
+
+
+
 ## User Manual
   
 The user manual has instructions for running the system. [[link]](/UserManual.md)
