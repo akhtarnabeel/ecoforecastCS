@@ -6,7 +6,7 @@
 sudo apt-get install git -y
 
 # Clone openwhisk
-git clone https://github.com/apache/incubator-openwhisk.git openwhisk
+git clone https://github.com/alexfarra/incubator-openwhisk.git openwhisk
 
 # Change current directory to openwhisk
 cd openwhisk
