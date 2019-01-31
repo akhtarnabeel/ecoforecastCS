@@ -72,5 +72,5 @@ Also execute the following commands to give cgi-bin permission to all the python
  sudo chmod 755 *.html 
  ```
 
-
+Also install OpenWhisk client on the webserver machine and set authentication and apihost.
 After that restart the apache server. your webpage will be live at ```IP-OF-MACHINE/ecoforecastCS/webserver/web```.
