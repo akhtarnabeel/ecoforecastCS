@@ -38,6 +38,8 @@ pip install pymongo
 
 **// add authentication for mangoDB**
 
+**// use mangoDB compass app to see the database**
+
 Now we need to create database and tables for the database. One can create a database in mongodb by going to shell and typing 
 ```
 mongo
