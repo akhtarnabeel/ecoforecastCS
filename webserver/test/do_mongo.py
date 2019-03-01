@@ -77,7 +77,7 @@ def mongo_register_user(name, email, affliation, password):
                         send_email("user", name, email, affliation, user_id, work_dir)
 			return True
 		except:
-			return Flase
+			return False
 	else:
 		return False
 

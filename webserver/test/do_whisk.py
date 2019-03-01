@@ -49,8 +49,8 @@ def run_code(action_name, branch, trigger_name=None):
 
 # Done
 def create_wrapper(user_id, transaction_id, model_name, intervals, stop_date):
-    # os.system("wsk -i property set --apihost 129.114.109.157")
-    # os.system("wsk -i property get --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP")
+    os.system("wsk -i property set --apihost 129.114.108.191")
+    os.system("wsk -i property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP")
     os.system('cp /var/www/html/ecoforecastCS/webserver/test/wrapper.py exec')
     prefix = """#!/usr/bin/python
 user_id = '""" + str(user_id) + """'
