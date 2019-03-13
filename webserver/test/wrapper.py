@@ -13,7 +13,12 @@ log = open("log.txt", 'w')
 error = open('error.txt', 'w')
 process = subprocess.Popen("/usr/bin/Rscript code.R", shell=True, stdout=log, stderr=error)
 process.wait()
-client = MongoClient('ecoforecast.bu.edu', 27017)
+client = MongoClient(
+        'ecoforecast.bu.edu', 
+        27017,
+        username='openwhisk',
+        password='ecoforecast2019',
+        authSource='EcoForecastTest')
 db = client.EcoForecastTest
 results = db.results
 log.close()
