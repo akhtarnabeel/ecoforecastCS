@@ -153,7 +153,7 @@ def show_lib_page():
 	<col width="300px">
 	<col width="300px">
 	<tr>
-	<h1>Please specify libraries here!</h1>
+	<h1>Please specify libraries here</h1>
 	</tr>
 
 	<tr>
@@ -196,7 +196,7 @@ def show_submit_code_page(cran_libs, git_libs):
 	<col width= "300px">
 	<tr>
 	<td>
-	<h1> Submit Your Code here!</h1>
+	<h1> Submit your code here</h1>
 	</td>
 	</tr>
 	<tr>
@@ -206,7 +206,7 @@ def show_submit_code_page(cran_libs, git_libs):
 	</tr>
 	<tr>
 	<td>
-	<textarea placeholder="Paste your R code here!!!" name="r_code" style="background:#C9F8A3;width:900px;height:500px;wrap:" hard";"=""></textarea>
+        <textarea placeholder="Paste your R code here:" name="r_code" style="background:#C9F8A3;width:900px;height:500px;wrap:" hard";"=""></textarea>
         </td>
 	<td>
 	Do yo want to repeat this Experiment?<br> <input type="radio" name="repeat_it" value="No" selected> No <input type="radio" name="repeat_it" value="Yes"> Yes<br><br>
@@ -231,7 +231,7 @@ def show_all_record_page(records, mes):
 
 	print """<center>
         	<table>
-        	<tr> <td>User ID</td> <td>Experiment ID</td> <td>Experiment Name</td> <td>Time</td> <td>Preiodic</td> <td>Results</td></tr>
+        	<tr> <td>User ID</td> <td>Experiment ID</td> <td>Experiment Name</td> <td>Time</td> <td>Periodic</td> <td>Results</td></tr>
         	"""
 
 	for rec in records:
