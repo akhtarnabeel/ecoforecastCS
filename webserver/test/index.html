@@ -128,7 +128,7 @@ def register_user(form):
 
 
 if __name__=="__main__":
-#	print_header()
+	print_header()
 
 
 	cookie = Cookie.SimpleCookie()
@@ -186,7 +186,8 @@ if __name__=="__main__":
 		elif "logout" in form:
 			delete_cookie(cookie)
 			show_login_page(" ")
-
+		elif "show_instruct" in form:
+			show_instructions_page()
 		elif "compare_models" in form:
 			if "model1" and "model2" and "user_id" in form:
 				download_one_result(form["user_id"].value, form["model1"].value, "model1.json")

@@ -13,7 +13,7 @@ def add_main_menue():
                 <a href="?show_home=true">Home</a>
                 <a href="?show_old=clicked">Show Logs</a>
                 <a href="?compare_models=clicked">Compare Models</a>
-                <a href="https://github.com/akhtarnabeel/ecoforecastCS#how-to-run-code-on-web">Instructions!</a>
+                <a href="?show_instruct=clicked">Instructions!</a>
                 </div>
 	"""
 	print """  <div class="logout">
@@ -253,7 +253,10 @@ def show_all_record_page(records, mes):
 		</table>"""
 
 
-
+def show_instructions_page():
+	print_header()
+	add_main_menue()
+	print "These are the instructions!"
 
 
 
