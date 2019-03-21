@@ -13,7 +13,7 @@ def add_main_menue():
                 <a href="?show_home=true">Home</a>
                 <a href="?show_old=clicked">Show Logs</a>
                 <a href="?compare_models=clicked">Compare Models</a>
-                <a href="?show_instruct=clicked">Instructions!</a>
+                <a href="?show_instruct=clicked">Instructions</a>
                 </div>
 	"""
 	print """  <div class="logout">
@@ -256,7 +256,26 @@ def show_all_record_page(records, mes):
 def show_instructions_page():
 	print_header()
 	add_main_menue()
-	print "These are the instructions!"
+	print """ <center> 
+	<h1> Instructions for running a forecast</h1>
+        <p> 1. Click on "Run new experiment to start".</p> 
+        <p> <img src="/ecoforecastCS/screenshots/home.png" style="width:700px;height:300px;"> </p>
+        <p> 2. Submit required R (CRAN or GitHub) packages. Basic R packages, dependencies for EcoforecastR,
+        <br>and runjags, devtools, and jsonlite are already included. If you don't have any special libraries to include, it is 
+        <br>not necessary to put anything in the boxes. Click submit to move to the next step </p>
+        <p> <img src= "/ecoforecastCS/screenshots/libbs.png" style="width:600px;height:500px;"> </p>
+        <p> 3. On the next page, name your model and submit your R code by copying and pasting the code into the box. Required supporting files 
+        <br>can be uploaded as a zipefile. This file is unpacked under the /action/ directory. Therefore, the files can be refered to within the code
+	<br> using the path /action/filename. The output of the R code should be written in json format to a file called 'out.json'. 
+	<br> If the users wants to use the online plotting tool, they should put their variables and associated values in the json 'body' 
+	<br> as shown in the image below <p> 
+        <p> <img src= "/ecoforecastCS/screenshots/json.png" style="width:300px;height:200px;"> </p>
+        <p> 4. After submitting the code, the user will be redirected to the log page where they can view all old results. The page will 
+        <br>need to be refreshed periodically. Once the run is complete, the results will appear in the table as shown below </p> 
+        <p> <img src= "/ecoforecastCS/screenshots/logs.png" style="width:700px;height:200px;"> </p>
+        <p> 5. The results can be viewed via plotly graphics and downloaded by clicking 'View Results'. </p>
+  	</center>
+	"""
 
 
 
