@@ -65,6 +65,14 @@ sudo pip install jinja2==2.9.6
     }
     ```
   
+  - Change number of cores and number of core shares for the system
+  
+  ```
+  cd ~/openwhisk/ansible/group_vars/all
+  ```
+  change ```numcore: 2
+  coreshare: 2 ``` to desired values. 
+  
   - Build it. (Might have to run the following command twice!)
 
   ```
