@@ -12,7 +12,8 @@ def add_main_menue():
 	print """  <div class="topnav">
                 <a href="?show_home=true">Home</a>
                 <a href="?show_old=clicked">Show Logs</a>
-                <a href="https://github.com/akhtarnabeel/ecoforecastCS#how-to-run-code-on-web">Instructions!</a>
+                <a href="?compare_models=clicked">Compare Models</a>
+                <a href="?show_instruct=clicked">Instructions</a>
                 </div>
 	"""
 	print """  <div class="logout">
@@ -60,8 +61,8 @@ def show_login_page( mess):
       </tr>
 
     </table>
-        <input type="submit" id="button3" name="login_button" value="login">
         <input type="submit" id="button3" name="register_button" value="register">
+        <input type="submit" id="button3" name="login_button" value="login">
 
     </form> </center>
     """
@@ -152,7 +153,7 @@ def show_lib_page():
 	<col width="300px">
 	<col width="300px">
 	<tr>
-	<h1>Please specify libraries here!</h1>
+	<h1>Please specify libraries here</h1>
 	</tr>
 
 	<tr>
@@ -195,7 +196,7 @@ def show_submit_code_page(cran_libs, git_libs):
 	<col width= "300px">
 	<tr>
 	<td>
-	<h1> Submit Your Code here!</h1>
+	<h1> Submit your code here</h1>
 	</td>
 	</tr>
 	<tr>
@@ -205,7 +206,7 @@ def show_submit_code_page(cran_libs, git_libs):
 	</tr>
 	<tr>
 	<td>
-	<textarea placeholder="Paste your R code here!!!" name="r_code" style="background:#C9F8A3;width:900px;height:500px;wrap:" hard";"=""></textarea>
+        <textarea placeholder="Paste your R code here:" name="r_code" style="background:#C9F8A3;width:900px;height:500px;wrap:" hard";"=""></textarea>
         </td>
 	<td>
 	Do yo want to repeat this Experiment?<br> <input type="radio" name="repeat_it" value="No" selected> No <input type="radio" name="repeat_it" value="Yes"> Yes<br><br>
@@ -230,7 +231,7 @@ def show_all_record_page(records, mes):
 
 	print """<center>
         	<table>
-        	<tr> <td>User ID</td> <td>Experiment ID</td> <td>Experiment Name</td> <td>Time</td> <td>Preiodic</td> <td>Results</td></tr>
+        	<tr> <td>User ID</td> <td>Experiment ID</td> <td>Experiment Name</td> <td>Time</td> <td>Periodic</td> <td>Results</td></tr>
         	"""
 
 	for rec in records:
@@ -252,7 +253,29 @@ def show_all_record_page(records, mes):
 		</table>"""
 
 
-
+def show_instructions_page():
+	print_header()
+	add_main_menue()
+	print """ <center> 
+	<h1> Instructions for running a forecast</h1>
+        <p> 1. Click on "Run new experiment to start".</p> 
+        <p> <img src="/ecoforecastCS/screenshots/home.png" style="width:700px;height:300px;"> </p>
+        <p> 2. Submit required R (CRAN or GitHub) packages. Basic R packages, dependencies for EcoforecastR,
+        <br>and runjags, devtools, and jsonlite are already included. If you don't have any special libraries to include, it is 
+        <br>not necessary to put anything in the boxes. Click submit to move to the next step </p>
+        <p> <img src= "/ecoforecastCS/screenshots/libbs.png" style="width:600px;height:500px;"> </p>
+        <p> 3. On the next page, name your model and submit your R code by copying and pasting the code into the box. Required supporting files 
+        <br>can be uploaded as a zipefile. This file is unpacked under the /action/ directory. Therefore, the files can be refered to within the code
+	<br> using the path /action/filename. The output of the R code should be written in json format to a file called 'out.json'. 
+	<br> If the users wants to use the online plotting tool, they should put their variables and associated values in the json 'body' 
+	<br> as shown in the image below <p> 
+        <p> <img src= "/ecoforecastCS/screenshots/json.png" style="width:300px;height:200px;"> </p>
+        <p> 4. After submitting the code, the user will be redirected to the log page where they can view all old results. The page will 
+        <br>need to be refreshed periodically. Once the run is complete, the results will appear in the table as shown below </p> 
+        <p> <img src= "/ecoforecastCS/screenshots/logs.png" style="width:700px;height:200px;"> </p>
+        <p> 5. The results can be viewed via plotly graphics and downloaded by clicking 'View Results'. </p>
+  	</center>
+	"""
 
 
 
@@ -363,4 +386,151 @@ def show_one_result(user_id):
 """
 
 
+
+def show_compare_models(user_id, model1 = None, model2 = None):
+	print_header()
+	add_main_menue()
+	print """ <center>
+	 <form method="post">
+         Model 1: <input type="text" value= "{1}" name="model1" size="20"><br>
+         Model 2: <input type="text" value= "{2}" name="model2" size="20"><br>
+         <input type="hidden" name="user_id" value="{0}">
+	 <input type="submit" id="button3" name="compare_models" value="Compare">
+    	 </form>
+	""".format(user_id, model1, model2)
+
+	if model1 is None and model2 is None:
+		return
+
+
+	try:
+		all_variables_model1 = get_all_variables("users/"+user_id+"/view_results/model1.json")
+		all_variables_model2 = get_all_variables("users/"+user_id+"/view_results/model2.json")
+	except:
+		print "There was no body in json"
+		return
+
+	print """ 
+	<html>
+	<head>
+    	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    	<script type="text/javascript">
+        function plot_this(){
+
+        var e = document.getElementById("x_var_m1");
+        var x1_to_plot = e.options[e.selectedIndex].text;
+        var e = document.getElementById("y_var_m1");
+        var y1_to_plot = e.options[e.selectedIndex].text;
+
+        var e = document.getElementById("x_var_m2");
+        var x2_to_plot = e.options[e.selectedIndex].text;
+        var e = document.getElementById("y_var_m2");
+        var y2_to_plot = e.options[e.selectedIndex].text;
+
+        var x1data = null; var y1data = null;
+	var x2data = null; var y2data = null;
+	var xlab = null; var ylab = null;
+	var Moldel1 = null; var Moldel2 = null;
+	"""
+
+	print "$.getJSON(\'users/"+user_id+"/view_results/model1.json\'"
+	print """ , function(data) {
+	x1data = data.data.body[x1_to_plot];
+        y1data = data.data.body[y1_to_plot];
+        xlab = data.data.xlab;
+        ylab = data.data.ylab;
+        Model1 = {
+                x: x1data,
+                y: y1data, 
+                mode: 'markers',
+		name: 'Model 1'
+        };
+	});"""
+	print "$.getJSON(\'users/"+user_id+"/view_results/model2.json\'"
+        print """ , function(data) {
+        x2data = data.data.body[x2_to_plot];
+        y2data = data.data.body[y2_to_plot];
+        xlab = data.data.xlab;
+        ylab = data.data.ylab;
+        var Model2 = {
+                x: x2data,
+                y: y2data,
+                mode: 'markers',
+		name: 'Model 2'
+        };
+        var data = [Model1, Model2];
+        var layout = {
+        xaxis: {
+        title: xlab
+        },
+        yaxis: {
+        title: ylab
+        },
+        };
+        Plotly.newPlot('myDiv', data, layout);
+        });"""
+
+
+
+
+
+
+
+
+
+        print """}
+	</script>
+  	</head>
+	<body>"""
+
+	print """ Plot these results! <br>
+      	<table>
+      	<tr>
+	<td> Model 1:</td>
+     		<form name="myform" action="javascript:plot_this()">
+     		</td><td><select id="x_var_m1">"""
+	for i in all_variables_model1:
+        	print """ 
+         		<option value="{0}">{0}</option>""".format(i)
+	print """</select></td><td> VS </td> 
+		 <td><select id="y_var_m1"> """
+	for i in all_variables_model1:
+        	print """ 
+			<option value="{0}">{0}</option> """.format(i)
+
+	print """</select></td>
+
+	<td> Model 2: </td>
+	<td>
+     		<form name="myform" action="javascript:plot_this()">
+     		<select id="x_var_m2">"""
+
+	for i in all_variables_model2:
+        	print """ 
+         		<option value="{0}">{0}</option>""".format(i)
+	print """</select></td><td> VS </td> 
+		 <td><select id="y_var_m2"> """
+	for i in all_variables_model2:
+        	print """ 
+			<option value="{0}">{0}</option> """.format(i)
+
+	print """</select></td>
+
+	<td>
+        <input name="Submit"  type="submit" value="Plot"/>
+    	</form>
+	</td>
+
+	</center>
+
+	<table>
+	<tr>
+ 	<div id="myDiv">
+        <!-- Plotly chart will be drawn inside this DIV -->
+ 	</div>
+	</tr>
+	</body>
+	</html>
+	"""
 

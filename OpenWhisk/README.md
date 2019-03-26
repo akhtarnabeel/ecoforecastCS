@@ -6,7 +6,7 @@
 sudo apt-get install git -y
 
 # Clone openwhisk
-git clone https://github.com/apache/incubator-openwhisk.git openwhisk
+git clone https://github.com/alexfarra/incubator-openwhisk.git openwhisk
 
 # Change current directory to openwhisk
 cd openwhisk
@@ -64,6 +64,14 @@ sudo pip install jinja2==2.9.6
         std = 20 m
     }
     ```
+  
+  - Change number of cores and number of core shares for the system
+  
+  ```
+  cd ~/openwhisk/ansible/group_vars/all
+  ```
+  change ```numcore: 2
+  coreshare: 2 ``` to desired values. 
   
   - Build it. (Might have to run the following command twice!)
 

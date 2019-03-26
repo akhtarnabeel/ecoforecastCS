@@ -12,15 +12,15 @@ import threading
 import socket
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s', filename='EcoForecast.log',
-                    filemode='w')
+
+logging.basicConfig(level = logging.INFO,format = '%(asctime)s %(levelname)s %(message)s',filename = 'EcoForecast.log',filemode = 'a')
 
 zipname = "supportingfiles.zip"
 
 MongoIP = '192.1.242.151'
 MongoPort = 27017
 
-ContainerIP = '192.1.242.34'
+ContainerIP = '192.1.242.39'
 ContainerPort = 12345
 ContainerNodePassword = 'sadsafsdad21312423ewdsdfa'
 
@@ -35,7 +35,7 @@ ContainerNodePassword = 'sadsafsdad21312423ewdsdfa'
 
 def run_code(action_name, branch, trigger_name=None):
     with open("runlogs2.txt", 'w') as f:
-        cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(zipname) + ' -m 8000 --docker alexfarra/ecoforecastdocker:{0}'.format(branch)
+        cmd = '/bin/wsk -i action create ' + str(action_name) + ' ' + str(zipname) + ' -m 8000 -t 86400000 --docker alexfarra/ecoforecastdocker:{0}'.format(branch)
         p = subprocess.Popen(cmd, stdout=f, stderr=f, shell=True)
         p.wait()
         if (trigger_name != None):
@@ -50,8 +50,8 @@ def run_code(action_name, branch, trigger_name=None):
 
 # Done
 def create_wrapper(user_id, transaction_id, model_name, intervals, stop_date):
-    # os.system("wsk -i property set --apihost 129.114.109.157")
-    # os.system("wsk -i property get --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP")
+    os.system("wsk -i property set --apihost 129.114.108.191")
+    os.system("wsk -i property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP")
     os.system('cp /var/www/html/ecoforecastCS/webserver/test/wrapper.py exec')
     prefix = """#!/usr/bin/python
 user_id = '""" + str(user_id) + """'
@@ -111,6 +111,8 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     # connect to server
     host = ContainerIP
 
+    logging.info('Going to send to container make: cran-lib:' + str(cran_libraries) + " git-lib:"+str(git_libraries) )
+
     # Define the port on which you want to connect
     port = ContainerPort
 
@@ -136,24 +138,28 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotCran':
+        s.close()
         return False
 
     s.send(str(git_libraries).encode('ascii'))
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotGit':
+        s.close()
         return False
 
     s.send(code_dir.encode('ascii'))
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotCodeDir':
+        s.close()
         return False
 
     s.send(code_name.encode('ascii'))
     s_data = s.recv(1024)
     s_data.strip()
     if s_data != 'GotCodeName':
+        s.close()
         return False
 
     # make sure it work
@@ -161,10 +167,13 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     s_data = s.recv(1024)
     s_data.strip()
     if s_data == 'END':
+	logging.info('Received END from container maker so good to go!')
+        s.close()
         return True
     else:
+        s.close()
         return False
-
+''' 
     f = open("Dockerfile", "w")
     f.write("FROM alexfarra/ecoforecastdocker:master\n")
     for depend in cran_libraries:
@@ -183,7 +192,7 @@ def configure_libraries_server(cran_libraries, git_libraries, code_dir, code_nam
     image = client.images.get('alexfarra/ecoforecastdocker:{0}'.format(code_name))
     client.login(username='alexfarra', password='draco115')
     client.images.push('alexfarra/ecoforecastdocker', tag=code_name)
-
+'''
 
 # Works
 def prepend(file1, string):
@@ -285,22 +294,15 @@ def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_lib
             branch = code_name
 
         # run the openWhisk code
-        logging.info('Running Code')
+        logging.info('Creating Action and Triggering it')
         run_code(action_name, branch, trigger_name)
-
+        logging.info('Action code is Triggered...')
     except:
         logging.exception("ERROR in running OpenWhisk job...")
-
-
-# configure_libraries_server([], ["khufkens/MODISTools"], "Test2", "WithLibraries")
-
-#!/usr/bin/python
-
-import json
 
 test = {"Image": "Nabeel no error!"}
 print(json.dumps( test ))
 
-test2 = {"Image": "Nabeel there is in main!"}
-print (json.dumps(test2))
+#configure_libraries_server([], ["khufkens/MODISTools"], "Test2", "WithLibraries")
 
+#logging.exception("ERROR in running OpenWhisk job...")

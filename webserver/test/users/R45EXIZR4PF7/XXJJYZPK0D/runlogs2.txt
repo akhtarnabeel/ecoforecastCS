@@ -1,0 +1,4 @@
+error: Unable to create action 'usersR45EXIZR4PF7XXJJYZPK0D': Unable to create HTTP request for PUT 'actions/usersR45EXIZR4PF7XXJJYZPK0D?overwrite=false': Unable to add the HTTP authentication header: Authorization key is not configured (--auth is required)
+Run 'wsk --help' for usage.
+error: Unable to invoke action 'usersR45EXIZR4PF7XXJJYZPK0D': Unable to create HTTP request for POST 'actions/usersR45EXIZR4PF7XXJJYZPK0D?blocking=false&result=false': Unable to add the HTTP authentication header: Authorization key is not configured (--auth is required)
+Run 'wsk --help' for usage.

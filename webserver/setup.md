@@ -36,10 +36,16 @@ apt-get install python-pip
 pip install pymongo
 ```
 
+**// add authentication for mangoDB**
+
+**// use mangoDB compass app to see the database**
+
 Now we need to create database and tables for the database. One can create a database in mongodb by going to shell and typing 
 ```
 mongo
 ```
+In case mongo command doesn't work, look at the [stackoverflow post to fix the issue](https://stackoverflow.com/questions/13312358/mongo-couldnt-connect-to-server-127-0-0-127017)
+
 Create database with name *EcoForecast*. Note that if you chose a different database name, you should update it in [*do_mongo.py*](https://github.com/akhtarnabeel/ecoforecastCS/blob/c260f93557115b49c50b7dec1582def052796d93/webserver/web/do_mongo.py#L10) file.
 ```
 use EcoForecast
@@ -70,5 +76,5 @@ Also execute the following commands to give cgi-bin permission to all the python
  sudo chmod 755 *.html 
  ```
 
-
+Also install OpenWhisk client on the webserver machine and set authentication and apihost.
 After that restart the apache server. your webpage will be live at ```IP-OF-MACHINE/ecoforecastCS/webserver/web```.
