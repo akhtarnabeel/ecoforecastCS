@@ -1,4 +1,3 @@
-
 # Ecoforecast User Manual
 
 
