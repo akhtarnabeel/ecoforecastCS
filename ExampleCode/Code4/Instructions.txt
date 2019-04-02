@@ -1,0 +1,10 @@
+Add following libraries when submitting code:
+
+Git: 
+khufkens/MODISTools
+EcoForecast/ecoforecastR
+
+CRAN:
+rjags
+runjags
+jsonlite

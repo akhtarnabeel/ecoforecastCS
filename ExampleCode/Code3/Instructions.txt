@@ -1,0 +1,8 @@
+Add following libraries when submitting code
+
+Git Libraries:
+khufkens/MODISTools
+
+
+Cran Libraires:
+rjags

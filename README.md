@@ -11,7 +11,7 @@ Ecosystems are essential to human health and well-being, for example by protecti
 This project aims to analyze and automate the procedures to make the ecological forecasts and update these forecasts over time as new data become available. To enhance access to the forecasts to other researchers, as well as to allow other researchers to 'compete' against other forecast models, we aim to build a scalable, cloud-based system for submitting, generating, archiving and disseminating multi-model ecological forecasts. Beyond advancing ecological research and socially-useful forecasts, this system will contribute to the more general development of a scalable and secure cyberinfrastructure for automated, repeatable scientific analyses applied to real-time data.
 
 <p align="center">
-<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/workflows.jpg" width="307.5" height="250" />
+<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/figures/workflows.jpg" width="307.5" height="250" />
   <br> 
   Figure 1 : Examples of Ecological Workflows
 </p>
@@ -29,7 +29,7 @@ To support ecological workflows, we create a secure and scalable cyberinfrastruc
 We use [Apache OpenWhisk](https://openwhisk.apache.org) for running code for ecological models. *"Apache OpenWhisk (Incubating) is an open source, distributed Serverless platform that executes functions (fx) in response to events at any scale".* In OpenWhisk, users' code runs in a container, and the container can be configured to support the environment and dependencies needed for running the code. 
 
 <p align="center">
-<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/System.jpg" width="700" height="500" />
+<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/figures/System.jpg" width="700" height="500" />
   <br> 
   Figure 2 : EcoForecast System 
 </p>
@@ -68,7 +68,7 @@ Currently, VFs can run on either Chameleon Cloud or GENI nodes.
 
 
 <p align="center">
-<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/screenshots/EcoForecast.jpg" width="700" height="583" />
+<img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/figures/EcoForecast.jpg" width="700" height="583" />
   <br> 
   Figure 3 : EcoForecast Architecture 
 </p>
