@@ -9,7 +9,7 @@ OpenWhisk is the serverless platform that lets us run the serverless functions.
 ## 2. [Webserver](/webserver/README.md)
 Webserver has the user interface. We use CGI-bin for website interface.
 
-## 3. [Database](/webserver/setup.md)
+## 3. [Database](/webserver/README.md)
 MongoDB is used to store user data. 
 
 ## 4. [ContainerMaker](/webserver/setupCM.md)
