@@ -73,6 +73,17 @@ sudo pip install jinja2==2.9.6
   change ```numcore: 2
   coreshare: 2 ``` to desired values. 
   
+  In case you are using Chameleon testbed and using and image of OS that already has OpenWhisk installed on it. (These commands can also be used to redeploy OpenWhisk. In case you are deploying OpenWhisk for the first time, skip this part.)
+  
+  
+  ```
+  cd <home_openwhisk>
+  cd bin
+  sudo ./wskdev teardown
+  sudo ./wskdev fresh
+  ```
+  
+  
   - Build it. (Might have to run the following command twice!)
 
   ```
