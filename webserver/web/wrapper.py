@@ -1,6 +1,4 @@
 
-
-
 import os
 import subprocess
 import json
@@ -8,13 +6,19 @@ import pymongo
 import random
 import time
 from pymongo import MongoClient
+
 os.chdir("/action")
 log = open("log.txt", 'w')
 error = open('error.txt', 'w')
 process = subprocess.Popen("/usr/bin/Rscript code.R", shell=True, stdout=log, stderr=error)
 process.wait()
-client = MongoClient('192.1.242.151', 27017)
-db = client.EcoForecast
+client = MongoClient(
+        db_ip, 
+        db_port,
+        username=db_username,
+        password=db_password,
+        authSource=db_source)
+db = client.EcoForecastTest
 results = db.results
 log.close()
 error.close()

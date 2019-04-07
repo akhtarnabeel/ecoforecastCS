@@ -9,3 +9,12 @@ ehthumbs.db
 Thumbs.db
 
 *.pyc
+
+# Sensative data
+.wskprops
+.env
+webserver/web/users/
+
+
+# Logs
+*.log

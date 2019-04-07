@@ -1,4 +1,0 @@
-error: Unable to create action 'usersalex1': resource already exists (code 450c1490ad8467035c63bcf368782b14)
-Run 'wsk --help' for usage.
-error: Unable to create rule 'rule-usersalex1': resource already exists (code 748d9e429f6a55108651a7dd516d88a1)
-ok: invoked /_/usersalex1 with id 4eec38b9bdfc48dbac38b9bdfc18db58

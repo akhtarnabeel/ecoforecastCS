@@ -1,6 +1,0 @@
-error: The API host is not valid: An API host must be provided.
-
-Run 'wsk --help' for usage.
-error: The API host is not valid: An API host must be provided.
-
-Run 'wsk --help' for usage.

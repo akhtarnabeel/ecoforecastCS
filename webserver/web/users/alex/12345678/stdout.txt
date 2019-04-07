@@ -1,2 +1,0 @@
-Sending build context to Docker daemon 28.67 kB
-Error response from daemon: The Dockerfile (Dockerfile) cannot be empty
