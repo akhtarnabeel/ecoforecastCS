@@ -337,8 +337,8 @@ def init_openwhisk(model_name, user_id, transaction_id, code, code_dir, cran_lib
         logging.exception("ERROR in running OpenWhisk job...")
 
 
-test = {"Image": "Nabeel no error!"}
-print(json.dumps(test))
+#test = {"Image": "Nabeel no error!"}
+#print(json.dumps(test))
 
 #configure_libraries_server([], ["khufkens/MODISTools"], "Test2", "WithLibraries")
 
