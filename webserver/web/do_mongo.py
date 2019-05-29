@@ -13,7 +13,7 @@ from email.MIMEText import MIMEText
 
 
 client = MongoClient()
-client = MongoClient('localhost', 27017, username='openwhisk', password='ecoforecast2019', authSource='EcoForecastTest')
+client = MongoClient('localhost', 27017, username='openwhisk', password='yourPasswordHere', authSource='EcoForecastTest')
 
 db = client.EcoForecastTest
 users = db.users
