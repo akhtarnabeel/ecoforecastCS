@@ -1,4 +1,4 @@
-# Container Maker Setup
+# Container Maker Setup [OUTDATED. Use python ContainerMaker.py file only]
 
 1. First install docker using instructions on docker website
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
