@@ -20,9 +20,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 
 zipname = "supportingfiles.zip"
 
-ContainerIP = '192.1.242.39'
+# container maker details come here
+ContainerIP = '192.1.999.999'
 ContainerPort = 12345
-ContainerNodePassword = 'sadsafsdad21312423ewdsdfa'
+ContainerNodePassword = 'yourPasswordHereForContainerMaker'
 
 """
 @param user_id: string
