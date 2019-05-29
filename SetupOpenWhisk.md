@@ -159,3 +159,7 @@ In case you are using Chameleon testbed and using an image of OS that already ha
   sudo ./wskdev fresh
   ```
   
+ ## NOTES:
+ 
+ If couchdb has trouble installing, change couchdb version from 2.1 to 2.3 in ~/openwhisk/ansible/group_vars/all
+  
