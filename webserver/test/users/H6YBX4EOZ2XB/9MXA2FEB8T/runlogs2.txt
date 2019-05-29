@@ -1,2 +1,0 @@
-ok: created action usersH6YBX4EOZ2XB9MXA2FEB8T
-ok: invoked /_/usersH6YBX4EOZ2XB9MXA2FEB8T with id 9b9916f8e5db40bb9916f8e5db40bbb0

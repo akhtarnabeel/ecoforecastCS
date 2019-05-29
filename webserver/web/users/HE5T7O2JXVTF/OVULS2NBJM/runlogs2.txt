@@ -1,4 +1,0 @@
-error: Unable to create action 'usersHE5T7O2JXVTFOVULS2NBJM': Put https://129.114.109.157/api/v1/namespaces/_/actions/usersHE5T7O2JXVTFOVULS2NBJM?overwrite=false: dial tcp 129.114.109.157:443: i/o timeout
-Run 'wsk --help' for usage.
-error: Unable to invoke action 'usersHE5T7O2JXVTFOVULS2NBJM': Post https://129.114.109.157/api/v1/namespaces/_/actions/usersHE5T7O2JXVTFOVULS2NBJM?blocking=false&result=false: dial tcp 129.114.109.157:443: i/o timeout
-Run 'wsk --help' for usage.

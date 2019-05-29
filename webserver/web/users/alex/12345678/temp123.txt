@@ -1,3 +1,0 @@
-error: Unable to create action 'alexusersalex12345678': resource already exists (code 91fa8897103f15bb19e04f8fd56f901d)
-Run 'wsk --help' for usage.
-ok: invoked /_/alexusersalex12345678 with id cd29c04aca4a4501a9c04aca4a6501cb

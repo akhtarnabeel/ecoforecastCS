@@ -1,3 +1,0 @@
-ok: created action usersHKIT6FHEPBFS1SW3P3MLDM
-ok: created rule rule-usersHKIT6FHEPBFS1SW3P3MLDM
-ok: invoked /_/usersHKIT6FHEPBFS1SW3P3MLDM with id 00eebbd2b1ba4f4aaebbd2b1ba1f4a67

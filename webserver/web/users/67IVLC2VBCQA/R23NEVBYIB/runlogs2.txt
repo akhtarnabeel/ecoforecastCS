@@ -1,3 +1,0 @@
-ok: created action users67IVLC2VBCQAR23NEVBYIB
-ok: created rule rule-users67IVLC2VBCQAR23NEVBYIB
-ok: invoked /_/users67IVLC2VBCQAR23NEVBYIB with id ee5400beab2b49669400beab2ba96631

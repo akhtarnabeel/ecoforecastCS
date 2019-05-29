@@ -1,3 +1,0 @@
-ok: created action usersXRPRSSA9MMBDQZB4KA7W80
-ok: created rule rule-usersXRPRSSA9MMBDQZB4KA7W80
-ok: invoked /_/usersXRPRSSA9MMBDQZB4KA7W80 with id 0e3a85016f614c24ba85016f61bc24cd

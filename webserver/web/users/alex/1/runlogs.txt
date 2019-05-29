@@ -1,1 +1,0 @@
-error: Unable to create trigger 'interval-usersalex1': resource already exists (code f7a716cbbeedbdc39089b2809e90ac50)
