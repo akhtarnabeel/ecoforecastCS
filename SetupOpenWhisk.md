@@ -30,7 +30,7 @@ sudo pip install jinja2==2.9.6
   - Change RAM and time cap:
     
     ```
-    ~/openwhisk/incubator-openwhisk/common/scala/src/main/resources/application.conf
+    ~/openwhisk/common/scala/src/main/resources/application.conf
     ```
 
     This file holds the RAM and action time limit. Change the following values to what you want, we've been using a max of 8GB for:
