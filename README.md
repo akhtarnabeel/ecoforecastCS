@@ -1,5 +1,5 @@
 # EcoForecast:
-##  A Scalable and Secure Cyberinfrastructure for the Repeatability of Ecological Research
+##  A Serverless Infrastructure for supporting Ecological Research
 
 ### Project Aim:
 EcoForecast aims to support the ecology research by providing state of the art cloud based infrastructure facility for the ecological forecasts.
@@ -46,7 +46,7 @@ The steps below shows the running of the system.
 1. A user who wishes to run computation on EcoForecast submits the job using the web interface provided.  For running the website, we are using CGI-bin for website interface. Currently, users can only submit code in R language. Users are also given the option to chose R library that their code uses. Users can also upload supporting files, e.g. configuration files, along with their code. 
 
 2. Code, along with supporting files, is provided to the **Orchestrator & Scheduler (O&S)**. O&S  decides where to place the *Serverless function* as Virtual Functions (VFs) for running computation for ecological research. 
-Currently, VFs can run on either Chameleon Cloud or GENI nodes. 
+Currently, VFs can run on either Chameleon Cloud (Core-Cloud) or GENI nodes (Edge-Cloud). 
 
     Chameleon has access to powerful nodes, so O&S can run serverless functions with RAM up to 8GB for each function. However, Chameleon nodes are located at one geographical location i.e. in Texas. 
 
