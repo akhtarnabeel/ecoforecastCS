@@ -108,7 +108,6 @@ sudo pip install jinja2==2.9.6
   - Run other Ansible code now:
   
   ```
-  cd ansible
   sudo ansible-playbook couchdb.yml
   sudo ansible-playbook initdb.yml
   sudo ansible-playbook wipe.yml
