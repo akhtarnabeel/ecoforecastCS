@@ -19,12 +19,12 @@ This project aims to analyze and automate the procedures to make the ecological 
 #### Ecological Workflows:
 
 Ecological workflows are composed of different prediction models, which consist of the jobs running serially or in parallel, and the output from a job is used as input to other jobs.  
-Figure 1 shows examples of two such workflows. In workflow type 1, the output from job A is used by job B for the prediction, and the jobs are executed serially. In workflow type 2, the output from job A is used by job C and D for the prediction, and the job C and D are executed in parallel. 
+Figure 1 shows examples of two such workflows. In workflow type 1, the output from job A is used by job B for the prediction, and the jobs are executed serially. In workflow type 2, the output from job A is used by job C and D for the prediction, and job C and D are executed in parallel. 
 
 Some jobs need to be executed periodically (e.g. every day) while other jobs are executed based on external events (e.g. new weather data). 
 
 #### System Design:
-To support ecological workflows, we create a secure and scalable cyberinfrastructure over multiple cloud providers. We use containerized approach to run ecological computations, where each job runs in a separate container. This provides the isolation and security, and help us elastically manage the resources. 
+To support ecological workflows, we create a secure and scalable cyberinfrastructure over multiple cloud providers. We use containerized approach to run ecological computations, where each job runs in a separate container. This provides isolation and security, and help us elastically manage the resources. 
 
 We use [Apache OpenWhisk](https://openwhisk.apache.org) for running code for ecological models. *"Apache OpenWhisk (Incubating) is an open source, distributed Serverless platform that executes functions (fx) in response to events at any scale".* In OpenWhisk, users' code runs in a container, and the container can be configured to support the environment and dependencies needed for running the code. 
 
@@ -41,9 +41,9 @@ Our implementation of the EcoForecast is based on [Apache OpenWhisk](https://ope
 [Chameleon Cloud](https://www.chameleoncloud.org) is deployed at the University of Chicago and the Texas Advanced Computing Center, and it provides deeply programmable virtual resources for cloud computing experiments. Chameleon provides users access to powerful machines, that can be used for running computationally extensive tasks. 
 
 Figure 2 shows our implementation of OpenWhisk deployment on GENI cloud edge and Chameleon cloud. 
-The steps below shows the running of the system.
+The steps below show the running of the system.
 
-1. A user who wishes to run computation on EcoForecast submits the job using the web interface provided.  For running the website, we are using CGI-bin for website interface. Currently, users can only submit code in R language. Users are also given the option to chose R library that their code uses. Users can also upload supporting files, e.g. configuration files, along with their code. 
+1. A user who wishes to run a computation on EcoForecast submits the job using the web interface provided.  For running the website, we are using CGI-bin for website interface. Currently, users can only submit code in R language. Users are also given the option to chose R library that their code uses. Users can also upload supporting files, e.g. configuration files, along with their code. 
 
 2. Code, along with supporting files, is provided to the **Orchestrator & Scheduler (O&S)**. O&S  decides where to place the *Serverless function* as Virtual Functions (VFs) for running computation for ecological research. 
 Currently, VFs can run on either Chameleon Cloud (Core-Cloud) or GENI nodes (Edge-Cloud). 
@@ -52,7 +52,7 @@ Currently, VFs can run on either Chameleon Cloud (Core-Cloud) or GENI nodes (Edg
 
     GENI nodes are spread all over the US at different educational and research institutes. However, GENI nodes have limited resources, so O&S can run serverless functions with RAM up to 2GB for each VF.
 
-    Although VFs running on Chameleon cloud have more resources, they are bound to one geographical location. If VFs are geographically far from the data source, the download time for the input data can significantly impact the total running time of a function. Morever, saving the output from VF into a database, which is geographically far from where function executes, can also significantly impact the running time of the function. 
+    Although VFs running on Chameleon cloud have more resources, they are bound to one geographical location. If VFs are geographically far from the data source, the download time for the input data can significantly impact the total running time of a function. Morover, saving the output from VF into a database, which is geographically far from where function executes, can also significantly impact the running time of the function. 
 
     Although GENI nodes have limited computation power, the functions can run at different geographical locations and VFs can be placed closer to the data source. This can reduce the download time for input data and significantly reduce the running time for the VF. 
 
@@ -65,7 +65,6 @@ Currently, VFs can run on either Chameleon Cloud (Core-Cloud) or GENI nodes (Edg
 5. Once the output is saved in the database, the user can access the output using the GUI interface. 
 
 6. Our GUI interface provides the user with different tools that can be used to understand the prediction model outputs. We used [Plotly](https://plot.ly) for plotting and comparing the output from the different prediction models.
-
 
 <p align="center">
 <img align=center src="https://github.com/akhtarnabeel/ecoforecastCS/raw/master/figures/EcoForecast.jpg" width="700" height="583" />
