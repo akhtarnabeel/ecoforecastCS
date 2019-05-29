@@ -1,5 +1,5 @@
 # EcoForecast:
-##  A Serverless Infrastructure for supporting Ecological Research
+##  A Serverless Platform for supporting Ecological Research
 
 ### Project Aim:
 EcoForecast aims to support the ecology research by providing state of the art cloud based infrastructure facility for the ecological forecasts.
