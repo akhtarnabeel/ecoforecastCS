@@ -73,6 +73,7 @@ sudo pip install jinja2==2.9.6
   change ```numcore: 2
   coreshare: 2 ``` to desired values. 
   
+## Using Image on Chameleon testbed
 In case you are using Chameleon testbed and using an image of OS that already has OpenWhisk installed on it. (These commands can also be used to redeploy OpenWhisk after changing any of the parameters i.e. numcore, memory etc. In case you are deploying OpenWhisk for the first time, skip this part.)
   
   
