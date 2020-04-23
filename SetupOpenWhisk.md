@@ -163,3 +163,4 @@ In case you are using Chameleon testbed and using an image of OS that already ha
  
  - If couchdb has trouble installing, change couchdb version from `2.1` to `2.3` in `~/openwhisk/ansible/group_vars/all`
  - In case build fails with container imager error. Try again after changing image:tag for `action-swift-v3.1.1` from `default` to `1.0.3` in `~/openwhisk/ansible/files/runtimes.json` or relevent image in the error.
+ - Use [this link](https://stackoverflow.com/questions/9346211/how-to-kill-a-process-on-a-port-on-ubuntu) to kill porcesses running on a port
