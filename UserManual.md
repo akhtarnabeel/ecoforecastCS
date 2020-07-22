@@ -21,8 +21,8 @@ Note: Large packages will currently cause a timeout -- we are working on a solut
 ![alt text](figures/code.png)
 The above screenshot shows a sample code that runs every hour (until the specified date) and uses the supporting files.
 
-The output json file should look like the following.
-![alt text](figures/json.png)
+The output json file should look like the following. The JSON headers must be exact for the results to work with the **[forecasting dashboard](http://ecoforecast.bu.edu:3838/NEFI/)**
+![alt text](figures/update_json.png)
 
 
 5. After submitting the code, the user will be redirected to the logs page where she can see all the old results. Upon the completion of each code execution, the results appear here. 
@@ -32,3 +32,5 @@ The output json file should look like the following.
 6. The user can view/download any result by clicking on 'view results'.
 
 ![alt text](figures/results.png)
+
+7. The user can view graphs of their results and other forecasts on the **[forecasting dashboard](http://ecoforecast.bu.edu:3838/NEFI/)**
