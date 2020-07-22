@@ -13,7 +13,9 @@
 ![alt text](figures/libbs.png)
 
 
-4. On the next page, the user can submit their code on the next page. The user can input containers they want to use with required packages here. If the user does not have a specifc container, they can use **'alexfarra/ecoforecastdocker:WithLibraries'**. This image has rjags, runjags, ecoforecastR, and other basic packages. Directions to creating a Docker image can be found **[here](https://github.com/akhtarnabeel/ecoforecastCS/blob/master/CreateContainer.md)**. Users can also specify the periodic interval if they wants to re-execute the same code repeatedly. The user should submit any files their code might require; in this case, all files should be zipped in one file, which get unpacked under the '/action/' directory, so in case your code is using these files, you can refer to them using the path '/action/filename'). 
+4. On the next page, the user can submit their code. The user can input containers they want to use with required packages here. If the user does not have a specifc container, they can use **'alexfarra/ecoforecastdocker:WithLibraries'**. This image has rjags, runjags, ecoforecastR, and other basic packages. Directions to creating a Docker image can be found **[here](https://github.com/akhtarnabeel/ecoforecastCS/blob/master/CreateContainer.md)**. 
+
+Users can also specify the periodic interval if they wants to re-execute the same code repeatedly. Additionally, the user should submit any files their code might require; in this case, all files should be zipped in one file, which get unpacked under the '/action/' directory, so in case your code is using these files, you can refer to them using the path '/action/filename'). 
 
 ![alt text](figures/run_page.png)
 
